@@ -1,0 +1,100 @@
+<div class="fixed z-10 h-full pointer-events-none md:block md:static">
+   <div class="relative flex w-screen h-full max-w-sm -ml-px md:w-64">
+      <input
+         id="menu_btn"
+         class="absolute opacity-0 menu-btn"
+         type="checkbox"
+         aria-hidden="true"
+      >
+      <label
+         for="menu_btn"
+         class="fixed inset-0 transition-opacity duration-300 ease-out bg-gray-600 opacity-0 pointer-events-none md:hidden big-label"></label>
+      <label
+         for="menu_btn"
+         class="absolute top-0 z-10 inline-block px-6 py-8 -ml-16 duration-300 ease-out cursor-pointer pointer-events-auto select-none transition-left left-full menu-icon md:hidden"
+      >
+         <span class="relative block w-5 transition-colors duration-300 ease-out bg-gray-500 h-2px navicon"></span>
+      </label>
+      <div class="flex flex-col flex-1 invisible w-full max-w-xs duration-300 ease-out transform -translate-x-full border-r border-gray-200 pointer-events-auto dark:border-gray-700 dark:border-r-2 dark:bg-gray-800 bg-gray-50 md:flex-initial transition-transform-visibility md:transition-none md:w-64 menu md:translate-x-0 md:visible">
+         <div class="flex items-center flex-shrink-0 h-auto px-4 py-5 md:py-0 md:h-16">
+            {%- if (page.url == "/README/") %}
+            <span
+               class="text-lg text-gray-900 underline dark:text-gray-300"
+            >
+               {{ site.title }}
+            </span>
+            {%- else %}
+            <a
+               href="{{ '/' | url }}"
+               class="text-lg text-gray-900 dark:text-gray-300"
+            >
+               {{ site.title }}
+            </a>
+            {%- endif %}
+         </div>
+         <div class="flex-1 h-0 overflow-y-auto md:flex md:flex-col">
+            <nav class="px-2 space-y-1 md:flex-1 md:py-4">
+               <ul>
+                  {%- for link in nav.links %}
+                  {% if (page.url == link.url) %}
+                  <li class="flex items-center px-2 py-2 mt-1 text-base font-medium leading-6 text-gray-900 underline dark:text-white md:leading-5 md:text-sm group">
+                     {% if link.svg %}
+                     <svg
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        class="w-6 h-6 mr-4 text-gray-500 dark:text-gray-300 md:mr-3"
+                     >
+                        {{ link.svg | safe }}
+                     </svg>
+                     {% endif %}
+                     {{ link.title }}
+                  </li>
+                  {% else %}
+                  <li class="mt-1">
+                     <a
+                        href="{{ link.url | url }}"
+                        class="flex items-center px-2 py-2 text-base font-medium leading-6 text-gray-600 dark:text-gray-300 md:leading-5 md:text-sm group dark:hover:text-white hover:text-gray-900 focus:outline-none focus:text-black dark:focus:text-white"
+                     >
+                        {% if link.svg %}
+                        <svg
+                           fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                           class="w-6 h-6 mr-4 text-gray-400 md:mr-3 dark:group-hover:text-gray-300 dark:group-focus:text-gray-300 group-hover:text-gray-500 group-focus:text-gray-500"
+                        >
+                           {{ link.svg | safe }}
+                        </svg>
+                        {% endif %}
+                        {{ link.title }}
+                     </a>
+                  </li>
+                  {% endif %}
+                  {%- endfor %}
+               </ul>
+            </nav>
+         </div>
+         <div class="flex items-center justify-center flex-shrink-0 p-2">
+            <ul class="flex">
+               {%- for social in nav.social %}
+               <li>
+                  <a
+                     href="{{ social.url | url }}"
+                     class="inline-block px-2 py-2 group focus:outline-none focus:text-white"
+                  >
+                     {% if social.title %}
+                     <span class="sr-only">{{ social.title }}</span>
+                     {% endif %}
+                     {% if social.svg | safe %}
+                     <svg
+                        viewBox="0 0 24 24" fill="currentColor"
+                        class="w-6 h-6 text-gray-400 dark:group-hover:text-gray-300 dark:group-focus:text-gray-300 group-hover:text-gray-500 group-focus:text-gray-500"
+                     >
+                        {{ social.svg | safe }}
+                     </svg>
+                     {% endif %}
+                  </a>
+               </li>
+               {%- endfor %}
+            </ul>
+         </div>
+      </div>
+      <div class="flex-shrink-0 w-14 md:hidden"></div>
+   </div>
+</div>

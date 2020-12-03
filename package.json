@@ -1,0 +1,26 @@
+{
+  "name": "apos-docs",
+  "version": "0.2.0",
+  "main": "index.js",
+  "bin": {
+    "apos-docs": "./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Apostolique/apos-docs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Apostolique/apos-docs/issues"
+  },
+  "keywords": [
+    "apos",
+    "documentation"
+  ],
+  "author": "Jean-David Moisan",
+  "license": "MIT",
+  "homepage": "https://github.com/Apostolique/apos-docs#readme",
+  "dependencies": {
+    "commander": "^6.2.0",
+    "fs-extra": "^9.0.1"
+  }
+}

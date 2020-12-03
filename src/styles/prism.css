@@ -1,0 +1,107 @@
+/* purgecss start ignore */
+.code {
+    @apply relative bg-code text-code-white px-0 mx-0 my-3 rounded grid;
+
+    &:before {
+        content: attr(lang);
+        right: 10px;
+        top: 5px;
+        font-size: 0.75rem;
+        @apply absolute text-code-white;
+    }
+
+    .line-numbers {
+        font-size: 100%;
+        letter-spacing: -1px;
+        padding-right: 0.8rem;
+        margin-right: .8rem;
+
+        @apply text-right float-left border-r border-code-dark select-none pointer-events-none;
+
+        > span {
+            counter-increment: linenumber;
+            @apply block;
+        }
+
+        > span:before {
+            content: counter(linenumber);
+            @apply block text-code-gray;
+        }
+    }
+
+    .syntax {
+        z-index: 2;
+        text-shadow: none;
+        box-shadow: none;
+
+        @apply relative m-0 px-6 py-5 leading-normal bg-transparent overflow-auto whitespace-pre;
+
+        /**
+            Fixed a weird line-height issue on Chrome/Edge android
+        */
+        font-size: 0;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        code {
+            font-size: 0.875rem;
+            @apply text-code-white;
+        }
+    }
+
+    .comment {
+        @apply text-code-gray;
+    }
+
+    .number {
+        @apply text-code-indigo;
+    }
+
+    .directive {
+        @apply text-code-red;
+    }
+
+    .keyword {
+        @apply text-code-red;
+    }
+
+    .keyword-function,
+    .keyword-public,
+    .keyword-static,
+    .keyword-protected {
+        @apply text-code-blue;
+    }
+
+    .key {
+        @apply text-code-orange;
+    }
+
+    .function {
+        @apply text-code-green;
+    }
+
+    .operator {
+        @apply text-code-red;
+    }
+
+    .string {
+        @apply text-code-yellow;
+    }
+
+    .class-name {
+        @apply text-code-orange;
+    }
+
+    .type-list {
+        .class-name {
+            @apply text-code-green;
+        }
+    }
+
+    .namespace {
+        @apply text-code-green;
+    }
+}
+/* purgecss end ignore */

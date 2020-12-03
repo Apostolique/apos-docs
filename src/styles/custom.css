@@ -1,0 +1,55 @@
+/* purgecss start ignore */
+/* Left sidebar */
+
+.menu-icon .navicon::before,
+.menu-icon .navicon::after {
+   content: '';
+   @apply bg-gray-500 block h-full transform absolute transition-all duration-500 ease-out;
+}
+.menu-icon .navicon::before {
+   @apply w-1/2;
+   top: 5px;
+}
+.menu-icon .navicon::after {
+   @apply w-full;
+   top: -5px;
+}
+.menu-btn:focus ~ .menu-icon .navicon,
+.menu-btn:focus ~ .menu-icon .navicon::before,
+.menu-btn:focus ~ .menu-icon .navicon::after {
+   @apply bg-gray-900 dark:bg-white;
+}
+.menu-btn:not(:checked) ~ .menu-icon {
+   @apply left-0 ml-0;
+}
+.menu-btn:checked ~ .menu {
+   @apply translate-x-0 visible;
+}
+.menu-btn:checked ~ .big-label {
+   @apply opacity-75 pointer-events-auto;
+}
+.menu-btn:checked ~ .menu-icon .navicon {
+   @apply bg-transparent dark:bg-transparent;
+}
+.menu-btn:checked ~ .menu-icon .navicon::before {
+   @apply w-full -rotate-45 bg-white dark:bg-white;
+}
+.menu-btn:checked ~ .menu-icon .navicon::after {
+   @apply rotate-45 bg-white dark:bg-white;
+}
+.menu-btn:checked ~ .menu-icon:not(.steps) .navicon::before,
+.menu-btn:checked ~ .menu-icon:not(.steps) .navicon::after {
+   @apply top-0;
+}
+
+/* Table of content */
+
+.toc {
+   a {
+      @apply block py-2 transition-colors duration-200 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100;
+   }
+   li ol > li {
+      @apply ml-4;
+   }
+}
+/* purgecss end ignore */

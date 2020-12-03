@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   {%- if site.title %}
+   <title>{{ site.title }}</title>
+   {%- endif %}
+   {%- if site.description %}
+   <meta name="description" content="{{ site.description }}"/>
+   {%- endif %}
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="{{ '/style.css' | version | url }}">
+   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+   <link rel="icon" type="image/png" href="{{ '/img/Icon.png' | version | url }}">
+   <meta name="darkreader-lock">
+</head>
+<body>
+   <div class="flex h-screen overflow-hidden bg-gray-100 dark:bg-gray-900">
+      {% include "sidebar.njk" %}
+      <div class="flex-1 mt-16 overflow-y-auto md:mt-0">
+         <div class="container flex mx-auto">
+            <main
+            class="flex-1 py-0 md:py-12 focus:outline-none"
+            tabindex="0"
+            >
+               <div class="px-4 prose max-w-none dark:prose-dark sm:px-6 md:px-8">
+                  {{ content | safe }}
+               </div>
+               <div class="flex flex-row-reverse pt-12">
+                  <a class="px-4 text-gray-700 underline sm:px-6 md:px-8 dark:text-gray-400" href="https://github.com/Apostolique/apos-docs/tree/master/{{ page.inputPath }}">Edit this page on GitHub</a>
+               </div>
+            </main>
+            {% if content | toc %}
+            <aside class="sticky flex-none hidden w-64 h-full top-20 lg:block">
+               <h5 class="mb-3 text-sm font-semibold tracking-wide text-gray-900 uppercase lg:text-xs dark:text-gray-100">On this page</h5>
+               <div class="overflow-x-hidden overflow-y-auto text-sm font-medium break-words max-h-screen-28">
+                  {{ content | toc | safe }}
+               </div>
+            </aside>
+            {% endif %}
+         </div>
+      </div>
+   </div>
+</body>
+</html>
