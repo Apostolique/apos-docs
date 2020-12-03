@@ -1,0 +1,57 @@
+{
+  "name": "apos-docs",
+  "version": "0.2.0",
+  "main": "index.js",
+  "bin": {
+    "apos-docs": "./index.js"
+  },
+  "scripts": {
+    "dev": "run-p dev:tmp dev:html dev:css",
+    "dev:tmp": "mkdir _tmp && echo . >_tmp/style.css",
+    "dev:html": "eleventy --serve",
+    "dev:css": "chokidar \"styles/**\" --initial=true -c \"npx postcss styles/style.css -o _tmp/style.css\"",
+    "build": "cross-env ELEVENTY_PRODUCTION=true eleventy && cross-env NODE_ENV=production postcss styles/tailwind.css -o _site/style.css",
+    "build2": "eleventy && postcss styles/tailwind.css -o _site/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Apostolique/apos-docs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Apostolique/apos-docs/issues"
+  },
+  "keywords": [
+    "apos",
+    "documentation"
+  ],
+  "author": "Jean-David Moisan",
+  "license": "MIT",
+  "homepage": "https://github.com/Apostolique/apos-docs#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.1",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.4",
+    "@tailwindcss/typography": "^0.3.1",
+    "autoprefixer": "^10.0.2",
+    "chokidar-cli": "^2.1.0",
+    "clean-css-cli": "^4.3.0",
+    "commander": "^6.2.0",
+    "cross-env": "^7.0.3",
+    "eleventy-plugin-toc": "^1.1.0",
+    "html-minifier": "^4.0.0",
+    "js-yaml": "^3.14.0",
+    "markdown-it": "^12.0.2",
+    "markdown-it-anchor": "^6.0.1",
+    "markdown-it-emoji": "^2.0.0",
+    "markdown-it-footnote": "^3.0.2",
+    "markdown-it-replace-link": "^1.1.0",
+    "markdown-it-sub": "^1.0.0",
+    "markdown-it-sup": "^1.0.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.1.10",
+    "postcss-cli": "^8.3.0",
+    "postcss-csso": "^5.0.0",
+    "postcss-import": "^13.0.0",
+    "postcss-nested": "^5.0.2",
+    "tailwindcss": "^2.0.1"
+  }
+}
