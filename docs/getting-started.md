@@ -13,13 +13,11 @@ docs/_data/nav.yml
 
 `README.md` and `getting-started.md` are just regular markdown files. You can fill them both with the following content for now:
 
-````md
 ```md
 # Title
 
 Hello World!
 ```
-````
 
 ### Navigation
 
