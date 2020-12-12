@@ -6,7 +6,7 @@ Documentation static site generator built with Eleventy. Should work out of the 
 
 ## Description
 
-Takes in a `docs` directory with your markdown files. Compiles the output into a `dist` directory. Adds the content of the `dist` directory to a `gh-pages` branch.
+Takes in a `docs` directory along with your main `README.md`. Compiles the output into an `apos-docs/_site` directory. Adds the content of the `apos-docs/_site` directory to a `gh-pages` branch. The documentation for your repository will be available at `[username].github.io/[repository name]`.
 
 ## Documentation
 
