@@ -1,5 +1,5 @@
 /* purgecss start ignore */
-.code {
+.code-highlight {
     @apply relative bg-code text-code-white px-0 mx-0 my-3 rounded grid;
 
     &:before {

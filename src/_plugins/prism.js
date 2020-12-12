@@ -41,6 +41,6 @@ module.exports = md => {
 
         const firstLine = 1;
         const lines = generateLineNumbers(code, firstLine - 1);
-        return `<div class="code" lang="${lang}"><pre class="syntax"><code>${lines}${code}</code></pre></div>`;
+        return `<div class="code-highlight" lang="${lang}"><pre class="syntax"><code>${lines}${code}</code></pre></div>`;
     };
 };
