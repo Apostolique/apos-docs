@@ -59,6 +59,7 @@ env:
   TITLE: Apos.Input
   DESCRIPTION: Input library for MonoGame.
   BASE: Apos.Input
+  REPO: https://github.com/Apostolique/Apos.Input/tree/master/
 
 jobs:
   build:
@@ -75,7 +76,7 @@ jobs:
       run: npm install apos-docs -g
     - name: Use apos-docs
       run: |
-        apos-docs -t ${{ env.TITLE }} -d '${{ env.DESCRIPTION }}' -b ${{ env.BASE }}
+        apos-docs -t ${{ env.TITLE }} -d '${{ env.DESCRIPTION }}' -b ${{ env.BASE }} -r ${{ env.REPO }}
         cd apos-docs
         npm i
         npm run build
@@ -94,6 +95,7 @@ env:
   TITLE: Apos.Input
   DESCRIPTION: Input library for MonoGame.
   BASE: Apos.Input
+  REPO: https://github.com/Apostolique/Apos.Input/tree/master/
 ```
 
 The `TITLE` variable lets you define the project name to show on the sidebar.
@@ -101,3 +103,5 @@ The `TITLE` variable lets you define the project name to show on the sidebar.
 THE `DESCRIPTION` variable is used as metadata in the site.
 
 The `BASE` variable lets you define the subdirectory that the site will end up in. For a repository-level gh-pages deployment `[username].github.io/[repository name]`, you should set the value to `[repository name]`.
+
+The `REPO` variable is used to generate the edit links for each pages.
