@@ -47,6 +47,7 @@
     "postcss-cli": "^8.3.0",
     "postcss-import": "^13.0.0",
     "postcss-nested": "^5.0.2",
-    "tailwindcss": "^2.0.1"
+    "tailwindcss": "^2.0.1",
+    "url-join": "^4.0.1"
   }
 }
