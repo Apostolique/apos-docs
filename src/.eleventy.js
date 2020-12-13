@@ -14,16 +14,16 @@ let config = {
     input: 'docs',
     includes: '../_includes',
   },
+  markdownTemplateEngine: false,
 }
 
 module.exports = eleventyConfig => {
   eleventyConfig.setUseGitIgnore(false);
 
-  eleventyConfig.addPassthroughCopy("./docs/**/*.{jpg,png,gif}");
-
   eleventyConfig.addWatchTarget('./_tmp/style.css');
 
   eleventyConfig.addPassthroughCopy({ './_tmp/style.css': './style.css' });
+  eleventyConfig.addPassthroughCopy("./docs/**/*.{jpg,png,gif}");
 
   eleventyConfig.addFilter('version', value => `${value}?v=${String(Date.now())}`);
 
