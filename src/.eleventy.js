@@ -2,6 +2,7 @@ const htmlmin = require('html-minifier');
 const markdownIt = require('markdown-it');
 const prism = require('./_plugins/prism');
 const yaml = require('js-yaml');
+const path = require('path');
 
 const pluginTOC = require('eleventy-plugin-toc');
 
@@ -27,13 +28,12 @@ module.exports = eleventyConfig => {
   eleventyConfig.addFilter('version', value => `${value}?v=${String(Date.now())}`);
 
   eleventyConfig.addFilter('edit', value => {
-    console.warn("Got: " + value);
     let isMainReadme = new RegExp(`^\./${config.dir.input}/README.md$`);
     if (isMainReadme.test(value)) {
-      return `${site.repo}/README.md`;
+      return path.posix.join(site.repo, 'README.md');
     }
 
-    return `${site.repo}${value}`;
+    return path.posix.join(site.repo, value);
   });
 
   eleventyConfig.addDataExtension("yml", contents => yaml.safeLoad(contents));
