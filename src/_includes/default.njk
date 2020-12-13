@@ -27,7 +27,7 @@
                   {{ content | safe }}
                </div>
                <div class="flex flex-row-reverse pt-12">
-                  <a class="px-4 text-gray-700 underline sm:px-6 md:px-8 dark:text-gray-400" href="https://github.com/Apostolique/apos-docs/tree/master/{{ page.inputPath }}">Edit this page on GitHub</a>
+                  <a class="px-4 text-gray-700 underline sm:px-6 md:px-8 dark:text-gray-400" href="{{ page.inputPath | edit }}">Edit this page on GitHub</a>
                </div>
             </main>
             {% if content | toc %}

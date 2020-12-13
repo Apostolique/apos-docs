@@ -10,7 +10,8 @@ program
    .option('-t, --title <title>', 'title for the project', 'Untitled')
    .option('-d, --desc <description>', 'description for the project', 'No description.')
    .option('-p, --path <path>', 'path to the markdown documentation files', 'docs')
-   .option('-b, --base <url>', 'base url for the relative links. For example: "apos-docs"', '')
+   .requiredOption('-b, --base <url>', 'base url for the relative links. For example: "apos-docs"', '')
+   .requiredOption('-r, --repo <url>', 'repo url for edit links. For example: "https://github.com/Apostolique/apos-docs/tree/master/"', '')
    .parse(process.argv);
 
 const config = [
@@ -34,4 +35,9 @@ for (const c of config) {
    console.log(`${c.src} -- ${c.dest}`);
 }
 
-fs.writeJsonSync('apos-docs/docs/_data/site.json', { title: program.title, description: program.desc, pathPrefix: program.base })
+fs.writeJsonSync('apos-docs/docs/_data/site.json', {
+   title: program.title,
+   description: program.desc,
+   pathPrefix: program.base,
+   repo: program.repo
+})

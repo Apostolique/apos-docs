@@ -26,6 +26,16 @@ module.exports = eleventyConfig => {
 
   eleventyConfig.addFilter('version', value => `${value}?v=${String(Date.now())}`);
 
+  eleventyConfig.addFilter('edit', value => {
+    console.warn("Got: " + value);
+    let isMainReadme = new RegExp(`^\./${config.dir.input}/README.md$`);
+    if (isMainReadme.test(value)) {
+      return `${site.repo}/README.md`;
+    }
+
+    return `${site.repo}${value}`;
+  });
+
   eleventyConfig.addDataExtension("yml", contents => yaml.safeLoad(contents));
 
   eleventyConfig.addCollection('readme', collection =>

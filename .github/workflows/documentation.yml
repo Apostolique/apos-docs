@@ -5,6 +5,12 @@ on:
     branches:
     - master
 
+env:
+  TITLE: apos-docs
+  DESCRIPTION: Documentation static site generator.
+  BASE: apos-docs
+  REPO: https://github.com/Apostolique/apos-docs/tree/master/
+
 jobs:
   build:
 
@@ -20,7 +26,7 @@ jobs:
       run: npm install -g
     - name: Use apos-docs
       run: |
-        apos-docs -t apos-docs -d 'Documentation static site generator.' -b /apos-docs
+        apos-docs -t ${{ env.TITLE }} -d '${{ env.DESCRIPTION }}' -b ${{ env.BASE }} -r ${{ env.REPO }}
         cd apos-docs
         npm i
         npm run build
