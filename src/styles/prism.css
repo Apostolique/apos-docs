@@ -94,6 +94,10 @@
         @apply text-code-orange;
     }
 
+    .title {
+        @apply text-code-blue;
+    }
+
     .type-list {
         .class-name {
             @apply text-code-green;
