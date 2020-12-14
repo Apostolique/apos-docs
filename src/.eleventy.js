@@ -17,6 +17,8 @@ let config = {
   markdownTemplateEngine: false,
 }
 
+let version = String(Date.now());
+
 module.exports = eleventyConfig => {
   eleventyConfig.setUseGitIgnore(false);
 
@@ -25,7 +27,7 @@ module.exports = eleventyConfig => {
   eleventyConfig.addPassthroughCopy({ './_tmp/style.css': './style.css' });
   eleventyConfig.addPassthroughCopy("./docs/**/*.{jpg,png,gif}");
 
-  eleventyConfig.addFilter('version', value => `${value}?v=${String(Date.now())}`);
+  eleventyConfig.addFilter('version', value => `${value}?v=${version}`);
 
   eleventyConfig.addFilter('edit', value => {
     let isMainReadme = new RegExp(`^\./${config.dir.input}/README.md$`);
