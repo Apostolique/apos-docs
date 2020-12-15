@@ -1,6 +1,6 @@
 {
   "name": "apos-docs",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "index.js",
   "scripts": {
     "dev": "run-p dev:tmp dev:html dev:css",

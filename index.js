@@ -6,7 +6,7 @@ const fs = require('fs-extra');
 
 program
    .name('apos-docs')
-   .version('0.2.1')
+   .version('0.2.2')
    .option('-t, --title <title>', 'title for the project', 'Untitled')
    .option('-d, --desc <description>', 'description for the project', 'No description.')
    .option('-p, --path <path>', 'path to the markdown documentation files', 'docs')
