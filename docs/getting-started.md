@@ -43,7 +43,7 @@ For the links, find svg icons from <https://heroicons.com/>. Pick the *medium* v
 
 For the social links, find svg icons from <https://simpleicons.org/>.
 
-## Pipeline
+### Pipeline
 
 You can automated the site's build process with a GitHub Actions workflow.
 
@@ -107,3 +107,7 @@ THE `DESCRIPTION` variable is used as metadata in the site.
 The `BASE` variable lets you define the subdirectory that the site will end up in. For a repository-level gh-pages deployment `[username].github.io/[repository name]`, you should set the value to `[repository name]`.
 
 The `REPO` variable is used to generate the edit links for each pages.
+
+## GitHub Pages
+
+In your repository's settings, go in the options and find the GitHub Pages section. In the Source, select the `gh-pages` branch and hit save.
