@@ -39,7 +39,9 @@ social:
 
 `social` links are shown at the bottom, the svg is required and the title is used for screen readers or terminal browsers.
 
-Find svg icons from <https://heroicons.com/>. Pick the *medium* version of your chosen icon. Only include the path part of the svg.
+For the links, find svg icons from <https://heroicons.com/>. Pick the *medium* version of your chosen icon. Only include the path part of the svg.
+
+For the social links, find svg icons from <https://simpleicons.org/>.
 
 ## Pipeline
 
