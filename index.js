@@ -24,6 +24,7 @@ const config = [
    { src: path.join(__dirname, 'src/package.json'), dest: 'apos-docs/package.json' },
    { src: path.join(__dirname, 'src/package-lock.json'), dest: 'apos-docs/package-lock.json' },
    { src: program.path, dest: 'apos-docs/docs' },
+   { src: path.join(__dirname, 'src/404.md'), dest: 'apos-docs/404.md' },
    { src: path.join(__dirname, 'src/_data/layout.js'), dest: 'apos-docs/docs/_data/layout.js' },
    { src: 'README.md', dest: 'apos-docs/docs/README.md' },
 ];
