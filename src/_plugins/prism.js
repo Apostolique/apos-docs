@@ -22,7 +22,7 @@ module.exports = md => {
         const token = tokens[i];
         const code = token.content;
         const lines = generateLineNumbers(code, 0);
-        return `<div class="code"><pre class="syntax"><code>${lines}${code}</code></pre></div>`
+        return `<div class="code-highlight"><pre class="syntax"><code>${lines}${code}</code></pre></div>`
     };
     md.renderer.rules.fence = (tokens, i) => {
         const token = tokens[i];
