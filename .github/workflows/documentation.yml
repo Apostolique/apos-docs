@@ -24,11 +24,13 @@ jobs:
         node-version: '14.x'
     - name: Install apos-docs
       run: npm install -g
+    - name: Setup npm cache
+      uses: c-hive/gha-npm-cache@v1
     - name: Use apos-docs
       run: |
         apos-docs -t ${{ env.TITLE }} -d '${{ env.DESCRIPTION }}' -b ${{ env.BASE }} -r ${{ env.REPO }}
         cd apos-docs
-        npm i
+        npm install
         npm run build
         cd -
     - name: Deploy
