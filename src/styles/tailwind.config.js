@@ -90,6 +90,10 @@ module.exports = {
             },
             pre: null,
             'pre code': null,
+            'pre code::after': {
+              content: "",
+              display: 'none'
+            },
             img: {
               'margin-top': '0.5rem',
               'margin-bottom': '0.5rem',
