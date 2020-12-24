@@ -80,7 +80,7 @@ jobs:
       run: |
         apos-docs -t '${{ env.TITLE }}' -d '${{ env.DESCRIPTION }}' -b '${{ env.BASE }}' -r '${{ env.REPO }}'
         cd apos-docs
-        npm i
+        npm install
         npm run build
         cd -
     - name: Deploy
