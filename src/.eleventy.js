@@ -51,7 +51,7 @@ module.exports = eleventyConfig => {
   let options = {
     html: true,
     breaks: true,
-    linkify: true,
+    linkify: false,
     typographer: true,
     replaceLink(link, env) {
       // Skip outbound link.
