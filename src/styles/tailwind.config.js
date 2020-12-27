@@ -37,6 +37,9 @@ module.exports = {
       maxHeight: theme => ({
         'screen-28': `calc(100vh - ${theme('spacing.28')})`,
       }),
+      screens: {
+        'print': {'raw': 'print'},
+      },
       typography: theme => ({
         DEFAULT: {
           css: {
