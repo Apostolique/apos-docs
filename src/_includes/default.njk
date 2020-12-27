@@ -15,19 +15,19 @@
    <meta name="darkreader-lock">
 </head>
 <body>
-   <div class="flex h-screen overflow-hidden bg-gray-100 dark:bg-gray-900">
+   <div class="flex h-screen overflow-hidden bg-gray-100 dark:bg-gray-900 print:h-full print:overflow-visible">
       {% include "sidebar.njk" %}
-      <div class="flex-1 mt-16 overflow-y-auto md:mt-0">
-         <div class="container flex mx-auto">
+      <div class="flex-1 mt-16 overflow-y-auto md:mt-0 print:mt-0">
+         <div class="container flex mx-auto print:mx-0">
             <main
             class="flex-1 py-0 md:py-12 focus:outline-none"
             tabindex="0"
             >
-               <div class="px-4 prose max-w-none dark:prose-dark sm:px-6 md:px-8">
+               <div class="px-4 prose max-w-none dark:prose-dark sm:px-6 md:px-8 print:px-0">
                   {{ content | safe }}
                </div>
                {%- if not skipEdit %}
-               <div class="flex flex-row-reverse pt-12">
+               <div class="flex flex-row-reverse pt-12 print:hidden">
                   <a class="px-4 text-gray-700 underline sm:px-6 md:px-8 dark:text-gray-400" href="{{ page.inputPath | edit }}">Edit this page on GitHub</a>
                </div>
                {%- endif %}
