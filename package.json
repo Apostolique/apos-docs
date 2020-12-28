@@ -1,6 +1,6 @@
 {
   "name": "apos-docs",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "main": "index.js",
   "bin": {
     "apos-docs": "./index.js"
