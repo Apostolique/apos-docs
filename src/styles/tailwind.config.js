@@ -162,6 +162,7 @@ module.exports = {
   },
   variants: {
     extend: {
+      textColor: ['group-focus'],
       typography: ['dark']
     }
   },

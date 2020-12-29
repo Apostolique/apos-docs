@@ -4,9 +4,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "run-p dev:tmp dev:html dev:css",
-    "dev:tmp": "mkdir _tmp && echo . >_tmp/style.css",
+    "dev:tmp": "mkdirp _tmp && echo . >_tmp/style.css",
     "dev:html": "eleventy --serve",
-    "dev:css": "chokidar \"styles/**\" --initial=true -c \"npx postcss styles/style.css -o _tmp/style.css\"",
+    "dev:css": "postcss styles/style.css -o _tmp/style.css --watch",
     "build": "cross-env ELEVENTY_PRODUCTION=true eleventy && cross-env NODE_ENV=production postcss styles/style.css -o _site/style.css && cleancss -o _site/style.css _site/style.css"
   },
   "repository": {
@@ -28,7 +28,6 @@
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.4",
     "@tailwindcss/typography": "^0.3.1",
     "autoprefixer": "^10.0.2",
-    "chokidar-cli": "^2.1.0",
     "clean-css-cli": "^4.3.0",
     "cross-env": "^7.0.3",
     "eleventy-plugin-toc": "^1.1.0",
@@ -42,6 +41,7 @@
     "markdown-it-replace-link": "^1.1.0",
     "markdown-it-sub": "^1.0.0",
     "markdown-it-sup": "^1.0.0",
+    "mkdirp": "^1.0.4",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.1.10",
     "postcss-cli": "^8.3.0",
