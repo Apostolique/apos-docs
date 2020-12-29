@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8">
-   {% if site.title %}
-   <title>{{ site.title }}</title>
-   {% endif %}
-   {% if site.description %}
-   <meta name="description" content="{{ site.description }}"/>
-   {% endif %}
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <link rel="stylesheet" href="{{ '/style.css' | version | url }}">
    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
    <link rel="icon" type="image/png" href="{{ '/img/Icon.png' | version | url }}">
    <meta name="darkreader-lock">
+   {% if site.title %}
+   <title>{{ site.title }}</title>
+   {% endif %}
+   {% if site.description %}
+   <meta name="description" content="{{ site.description }}">
+   {% endif %}
 </head>
 <body class="bg-gray-100 dark:bg-gray-900">
    <div class="flex">
