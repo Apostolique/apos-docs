@@ -52,4 +52,10 @@
       @apply ml-4;
    }
 }
+
+/* word-break */
+.break-anywhere {
+   overflow-wrap: anywhere;
+}
+
 /* purgecss end ignore */
