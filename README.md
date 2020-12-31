@@ -10,7 +10,7 @@ Takes in a `docs` directory along with your main `README.md`. Compiles the outpu
 
 ## Documentation
 
-[Read the documentation.](https://apostolique.github.io/apos-docs/)
+[Read the documentation.](https://apostolique.github.io/apos-docs/getting-started/)
 
 ## Tech Stack
 
