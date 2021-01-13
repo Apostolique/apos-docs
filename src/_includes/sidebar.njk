@@ -18,7 +18,7 @@
       <div class="flex flex-col flex-1 invisible w-full max-w-xs duration-300 ease-out transform -translate-x-full border-r border-gray-200 pointer-events-auto dark:border-gray-700 dark:border-r-2 dark:bg-gray-800 bg-gray-50 md:flex-initial transition-transform-visibility md:transition-none md:w-64 menu md:translate-x-0 md:visible">
          <!-- Site Title -->
          <div class="flex items-center flex-shrink-0 h-auto px-4 py-5 md:py-0 md:h-16">
-            {% if (page.url == "/README/") %}
+            {% if (page.url | pageurlrewrite == "/") %}
             <span
                class="text-lg text-gray-900 underline dark:text-gray-300"
             >
@@ -37,7 +37,7 @@
             <nav class="px-2 space-y-1 md:flex-1 md:py-4">
                <!-- Recursive Sidebar Links -->
                {% macro sidebar(link) %}
-               {% if (page.url == link.url) %}
+               {% if ((page.url | pageurlrewrite) == link.url) %}
                <li class="mt-1">
                   <span class="flex items-center px-2 py-2 text-base font-medium leading-6 text-gray-900 underline dark:text-white md:leading-5 md:text-sm group">
                      {% if link.svg %}

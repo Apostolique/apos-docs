@@ -29,6 +29,15 @@ module.exports = eleventyConfig => {
 
   eleventyConfig.addFilter('version', value => `${value}?v=${version}`);
 
+  eleventyConfig.addFilter('pageurlrewrite', value => {
+    let isREADME = new RegExp('readme/$', 'i');
+    if (isREADME.test(value)) {
+      return value.replace(isREADME, "");
+    }
+
+    return value;
+  });
+
   eleventyConfig.addFilter('edit', value => {
     let isMainReadme = new RegExp(`^\./${config.dir.input}/README.md$`);
     if (isMainReadme.test(value)) {
@@ -41,9 +50,10 @@ module.exports = eleventyConfig => {
   eleventyConfig.addDataExtension("yml", contents => yaml.safeLoad(contents));
 
   eleventyConfig.addCollection('readme', collection =>
-    collection.getAllSorted().map(item => {
-      if (item.fileSlug === 'README') {
-        item.outputPath = item.outputPath.replace('/README', '');
+    collection.getAllSorted().map(page => {
+      if (page.fileSlug === 'README') {
+        page.url = page.url.replace('/README', '');
+        page.outputPath = page.outputPath.replace('/README', '');
       }
     })
   );
