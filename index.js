@@ -3,16 +3,19 @@
 const { program } = require('commander');
 const path = require('path');
 const fs = require('fs-extra');
+const package = require('./package.json');
 
 program
    .name('apos-docs')
-   .version('0.2.2')
+   .version(package.version)
    .option('-t, --title <title>', 'title for the project', 'Untitled')
    .option('-d, --desc <description>', 'description for the project', 'No description.')
    .option('-p, --path <path>', 'path to the markdown documentation files', 'docs')
    .requiredOption('-b, --base <url>', 'base url for the relative links. For example: "apos-docs"', '')
    .requiredOption('-r, --repo <url>', 'repo url for edit links. For example: "https://github.com/Apostolique/apos-docs/tree/master/"', '')
    .parse(process.argv);
+
+const options = program.opts();
 
 const config = [
    { src: path.join(__dirname, 'src/_includes'), dest: 'apos-docs/_includes' },
@@ -23,7 +26,7 @@ const config = [
    { src: path.join(__dirname, 'src/postcss.config.js'), dest: 'apos-docs/postcss.config.js' },
    { src: path.join(__dirname, 'src/package.json'), dest: 'apos-docs/package.json' },
    { src: path.join(__dirname, 'src/package-lock.json'), dest: 'apos-docs/package-lock.json' },
-   { src: program.path, dest: 'apos-docs/docs' },
+   { src: options.path, dest: 'apos-docs/docs' },
    { src: path.join(__dirname, 'src/404.md'), dest: 'apos-docs/docs/404.md' },
    { src: path.join(__dirname, 'src/_data/layout.js'), dest: 'apos-docs/docs/_data/layout.js' },
    { src: 'README.md', dest: 'apos-docs/docs/README.md' },
@@ -37,8 +40,8 @@ for (const c of config) {
 }
 
 fs.writeJsonSync('apos-docs/docs/_data/site.json', {
-   title: program.title,
-   description: program.desc,
-   pathPrefix: program.base,
-   repo: program.repo
+   title: options.title,
+   description: options.desc,
+   pathPrefix: options.base,
+   repo: options.repo
 })

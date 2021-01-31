@@ -22,7 +22,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '14.x'
-    - run: npm --no-git-tag-version version 1.0.0
     - name: Install apos-docs
       run: npm install -g
     - name: Setup npm cache

@@ -1,5 +1,6 @@
 {
   "name": "apos-docs",
+  "version": "1.0.0",
   "main": "index.js",
   "bin": {
     "apos-docs": "./index.js"
@@ -19,7 +20,7 @@
   "license": "MIT",
   "homepage": "https://github.com/Apostolique/apos-docs#readme",
   "dependencies": {
-    "commander": "^6.2.0",
+    "commander": "^7.0.0",
     "fs-extra": "^9.0.1"
   }
 }
