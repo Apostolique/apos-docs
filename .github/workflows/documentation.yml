@@ -22,6 +22,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '14.x'
+    - name: Get version from tag
+      run: |
+        TAGVERSION=$(git describe --tags --abbrev=0)
+        echo "TAGVERSION=${TAGVERSION:1}" >> $GITHUB_ENV
+    - run: npm --no-git-tag-version version ${{ env.TAGVERSION }}
     - name: Install apos-docs
       run: npm install -g
     - name: Setup npm cache
