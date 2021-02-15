@@ -7,9 +7,7 @@
    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
    <link rel="icon" type="image/png" href="{{ '/img/Icon.png' | version | url }}">
    <meta name="darkreader-lock">
-   {% if site.title %}
-   <title>{{ site.title }}</title>
-   {% endif %}
+   <title>{{ content | pagetitle | safe }}</title>
    {% if site.description %}
    <meta name="description" content="{{ site.description }}">
    {% endif %}

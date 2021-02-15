@@ -3,6 +3,7 @@ const markdownIt = require('markdown-it');
 const prism = require('./_plugins/prism');
 const yaml = require('js-yaml');
 const urljoin = require('url-join');
+const { parse } = require('node-html-parser');
 
 const pluginTOC = require('eleventy-plugin-toc');
 
@@ -36,6 +37,17 @@ module.exports = eleventyConfig => {
     }
 
     return value;
+  });
+
+  eleventyConfig.addFilter('pagetitle', content => {
+    let root = parse(content);
+    let h1 = root.querySelector('h1');
+
+    if (h1) {
+      return h1.innerText;
+    }
+
+    return site.title;
   });
 
   eleventyConfig.addFilter('edit', value => {
