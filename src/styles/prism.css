@@ -76,6 +76,10 @@
         @apply text-code-gray;
     }
 
+    .boolean {
+        @apply text-code-indigo;
+    }
+
     .number {
         @apply text-code-indigo;
     }
