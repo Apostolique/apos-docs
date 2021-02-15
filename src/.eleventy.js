@@ -44,7 +44,7 @@ module.exports = eleventyConfig => {
     let h1 = root.querySelector('h1');
 
     if (h1) {
-      return h1.innerText;
+      return `${h1.innerText} - ${site.title}`;
     }
 
     return site.title;
