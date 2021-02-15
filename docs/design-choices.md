@@ -2,10 +2,15 @@
 
 ## Markdown
 
-* The markdown should be readable by itself from GitHub. This means that links should work in the context of the repository and be rewritten for the static site.
-* Custom markdown syntax should be minimized.
-* Pages that have multiple headings should have a table of content.
-* Each page in the generated site should include an edit link that points to the same page in the GitHub repository.
+* The markdown should be readable by itself from GitHub. This means that links must work in the context of the repository and be rewritten for the static site.
+* Avoid custom markdown syntax unless absolutely necessary.
+* Pages that have multiple headings will have a table of content generated.
+* Each page in the generated site will include an edit link that points to the same page in the GitHub repository.
+
+## Images
+
+* Support jpg, png, gif
+* Links to images must work in the context of the repository and be rewritten for the static site.
 
 ## Routing
 
@@ -16,5 +21,5 @@
 
 Stored in `docs/_data/nav.yml` and contains:
 
-* List of links to navigate through the docs' pages.
+* Nested list of links to navigate through the docs' pages.
 * List of social media links.
