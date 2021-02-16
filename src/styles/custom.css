@@ -42,17 +42,6 @@
    @apply top-0;
 }
 
-/* Table of content */
-
-.toc {
-   a {
-      @apply block py-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100;
-   }
-   li ol > li {
-      @apply ml-4;
-   }
-}
-
 /* word-break */
 .break-anywhere {
    overflow-wrap: anywhere;

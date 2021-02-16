@@ -3,9 +3,8 @@ const markdownIt = require('markdown-it');
 const prism = require('./_plugins/prism');
 const yaml = require('js-yaml');
 const urljoin = require('url-join');
-const { parse } = require('node-html-parser');
-
-const pluginTOC = require('eleventy-plugin-toc');
+const { parseDocument } = require('htmlparser2');
+const domutils = require('domutils');
 
 const site = require('./docs/_data/site.json')
 
@@ -40,14 +39,41 @@ module.exports = eleventyConfig => {
   });
 
   eleventyConfig.addFilter('pagetitle', content => {
-    let root = parse(content);
-    let h1 = root.querySelector('h1');
+    let root = parseDocument(content);
+    let h1 = domutils.findOne(e => e.tagName === 'h1', root.children);
 
-    if (h1) {
-      return `${h1.innerText} - ${site.title}`;
+    return h1 ? `${domutils.getText(h1)} - ${site.title}` : site.title;
+  });
+
+  eleventyConfig.addFilter('toc', content => {
+    let root = parseDocument(content);
+    let tags = ['h2', 'h3', 'h4'];
+    let h = domutils.findAll(e => tags.some(t => e.tagName == t), root.children);
+
+    let prev = [{
+      tagName: 'h1',
+      href: '',
+      title: '',
+      children: []
+    }];
+
+    for (let e of h) {
+      while (e.tagName <= prev[prev.length - 1].tagName) {
+        prev.pop();
+      }
+
+      let newChild = {
+        tagName: e.tagName,
+        href: `#${e.attribs.id}`,
+        title: domutils.getText(e),
+        children: []
+      };
+
+      prev[prev.length - 1].children.push(newChild)
+      prev.push(newChild);
     }
 
-    return site.title;
+    return prev[0].children;
   });
 
   eleventyConfig.addFilter('edit', value => {
@@ -121,8 +147,6 @@ module.exports = eleventyConfig => {
   md.use(require('markdown-it-sup'));
   prism(md);
   eleventyConfig.setLibrary("md", md);
-
-  eleventyConfig.addPlugin(pluginTOC)
 
   eleventyConfig.addTransform('htmlmin', (content, outputPath) => {
     if (process.env.ELEVENTY_PRODUCTION && outputPath && outputPath.endsWith('.html')) {
