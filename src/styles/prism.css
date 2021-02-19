@@ -1,7 +1,7 @@
 /* purgecss start ignore */
 .code-select {
     user-select: all;
-    @apply relative pt-3 bg-code-header rounded;
+    @apply relative pt-3 bg-gray-300 dark:bg-code-header rounded;
 
     &:before {
         content: 'select';
