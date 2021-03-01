@@ -19,7 +19,7 @@
       <div class="flex flex-row-reverse flex-1 mx-auto max-w-7xl">
          <!-- Table of Content -->
          {% set tableofcontent = content | toc %}
-         {% if tableofcontent %}
+         {% if tableofcontent | length %}
          {% macro sidetoc(link) %}
          <li class="ml-4">
             <a
