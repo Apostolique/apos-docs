@@ -42,7 +42,17 @@ module.exports = eleventyConfig => {
     let root = parseDocument(content);
     let h1 = domutils.findOne(e => e.tagName === 'h1', root.children);
 
-    return h1 ? `${domutils.getText(h1)} - ${site.title}` : site.title;
+    let pageTitle = site.title;
+
+    if (h1) {
+      let currentTitle = domutils.getText(h1);
+      // Useful on the home page. Don't want "apos-docs - apos-docs"
+      if (currentTitle !== site.title) {
+        pageTitle = `${currentTitle} - ${site.title}`;
+      }
+    }
+
+    return pageTitle;
   });
 
   eleventyConfig.addFilter('toc', content => {
