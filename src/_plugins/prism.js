@@ -11,7 +11,6 @@ prism.hooks.add('wrap', function (env) {
 var generateLineNumbers = (code, lineStart) =>
     `<span aria-hidden="true" class="line-numbers" style="counter-reset: linenumber ${lineStart}">` +
     code
-        .trim()
         .split('\n')
         .map(() => `<span></span>`)
         .join('') +
