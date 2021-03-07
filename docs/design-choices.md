@@ -1,5 +1,7 @@
 # Design choices
 
+High level overview for the apos-docs design decisions.
+
 ## Markdown
 
 * The markdown should be readable by itself from GitHub. This means that links must work in the context of the repository and be rewritten for the static site.

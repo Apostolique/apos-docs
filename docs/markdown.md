@@ -1,3 +1,7 @@
+# Markdown
+
+This page shows a preview of the markdown features that are supported.
+
 # h1 Heading 8-)
 ## h2 Heading
 ### h3 Heading

@@ -1,5 +1,7 @@
 # Getting started
 
+Quick guide to get you started with apos-docs.
+
 ## Setup
 
 In your GitHub repository's root, you will need the following:
