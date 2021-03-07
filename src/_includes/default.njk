@@ -8,9 +8,7 @@
    <link rel="icon" type="image/png" href="{{ '/img/Icon.png' | version | url }}">
    <meta name="darkreader-lock">
    <title>{{ content | pagetitle | safe }}</title>
-   {% if site.description %}
-   <meta name="description" content="{{ site.description }}">
-   {% endif %}
+   <meta name="description" content="{{ content | pagedescription | safe }}">
 </head>
 <body class="bg-gray-100 dark:bg-gray-900">
    <div class="flex">

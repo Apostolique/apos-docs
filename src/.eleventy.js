@@ -55,6 +55,19 @@ module.exports = eleventyConfig => {
     return pageTitle;
   });
 
+  eleventyConfig.addFilter('pagedescription', content => {
+    let root = parseDocument(content);
+    let p = domutils.findOne(e => e.tagName === 'p', root.children);
+
+    let pageDescription = site.description;
+
+    if (p) {
+      pageDescription = domutils.getText(p);
+    }
+
+    return pageDescription;
+  });
+
   eleventyConfig.addFilter('toc', content => {
     let root = parseDocument(content);
     let tags = ['h2', 'h3', 'h4'];
