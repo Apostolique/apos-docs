@@ -1,4 +1,4 @@
-# Markdown
+# Markdown showcase
 
 This page shows a preview of the markdown features that are supported.
 
