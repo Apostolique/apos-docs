@@ -35,6 +35,9 @@ module.exports = {
         '2px': '2px',
         '16/9': '56.25%',
       },
+      minWidth: {
+        '65ch': '65ch',
+      },
       maxHeight: theme => ({
         'screen-28': `calc(100vh - ${theme('spacing.28')})`,
       }),
