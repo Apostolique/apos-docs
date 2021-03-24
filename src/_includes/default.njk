@@ -16,26 +16,26 @@
       {% include "sidebar.njk" %}
       <div class="flex flex-row-reverse flex-1 mx-auto max-w-7xl">
          <!-- Table of Content -->
-         {% set tableofcontent = content | toc %}
-         {% if tableofcontent | length %}
-         {% macro sidetoc(link) %}
-         <li class="ml-4">
-            <a
-               class="block py-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
-               href="{{ link.href }}"
-            >
-               {{ link.title }}
-            </a>
-            {% if link.children %}
-            <ol>
-            {% for link in link.children %}
-            {{ sidetoc(link) }}
-            {% endfor %}
-            </ol>
-            {% endif %}
-         </li>
-         {% endmacro %}
          <div class="sticky top-0 hidden w-64 h-screen pt-20 overflow-y-hidden bg-gray-100 lg:flex lg:flex-col dark:bg-gray-900">
+            {% set tableofcontent = content | toc %}
+            {% if tableofcontent | length %}
+            {% macro sidetoc(link) %}
+            <li class="ml-4">
+               <a
+                  class="block py-2 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+                  href="{{ link.href }}"
+               >
+                  {{ link.title }}
+               </a>
+               {% if link.children %}
+               <ol>
+               {% for link in link.children %}
+               {{ sidetoc(link) }}
+               {% endfor %}
+               </ol>
+               {% endif %}
+            </li>
+            {% endmacro %}
             <h5 class="mb-3 text-sm font-semibold tracking-wide text-gray-900 uppercase lg:text-xs dark:text-gray-100">On this page</h5>
             <div class="overflow-x-hidden overflow-y-auto text-sm font-medium break-words">
                <nav>
@@ -60,8 +60,8 @@
                   </ol>
                </nav>
             </div>
+            {% endif %}
          </div>
-         {% endif %}
          <!-- Article -->
          <div class="flex flex-col items-center flex-1">
             <!-- Hamberger Menu Spacer -->
