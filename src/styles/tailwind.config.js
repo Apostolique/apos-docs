@@ -3,12 +3,9 @@ const colors = require('tailwindcss/colors');
 
 module.exports = {
   darkMode: 'media',
-  purge: {
-    content: ["_site/**/*.html"],
-    options: {
-      whitelist: [],
-    },
-  },
+  purge: [
+    "./_site/**/*.html",
+  ],
   theme: {
     extend: {
       colors: {
@@ -97,10 +94,6 @@ module.exports = {
             },
             pre: null,
             'pre code': null,
-            'pre code::after': {
-              content: "",
-              display: 'none'
-            },
             img: {
               'margin-top': '0.5rem',
               'margin-bottom': '0.5rem',

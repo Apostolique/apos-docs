@@ -108,7 +108,7 @@ module.exports = eleventyConfig => {
     return urljoin(site.repo, value);
   });
 
-  eleventyConfig.addDataExtension("yml", contents => yaml.safeLoad(contents));
+  eleventyConfig.addDataExtension("yml", contents => yaml.load(contents));
 
   eleventyConfig.addCollection('readme', collection =>
     collection.getAllSorted().map(page => {
