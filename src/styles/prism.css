@@ -94,6 +94,7 @@
 
     .keyword-function,
     .keyword-public,
+    .keyword-private,
     .keyword-static,
     .keyword-protected {
         @apply text-code-blue;
