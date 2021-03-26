@@ -11,9 +11,9 @@ program
    .option('-t, --title <title>', 'title for the project', 'Untitled')
    .option('-d, --desc <description>', 'description for the project', 'No description.')
    .option('-p, --path <path>', 'path to the markdown documentation files', 'docs')
-   .requiredOption('-b, --base <url>', 'base url for the relative links. For example: "apos-docs"', '')
-   .requiredOption('-r, --repo <url>', 'repo url for edit links. For example: "https://github.com/Apostolique/apos-docs/tree/master/"', '')
-   .parse(process.argv);
+   .requiredOption('-b, --base <url>', 'base url for the relative links. For example: "apos-docs"')
+   .requiredOption('-r, --repo <url>', 'repo url for edit links. For example: "https://github.com/Apostolique/apos-docs/tree/master/"')
+   .parse();
 
 const options = program.opts();
 
