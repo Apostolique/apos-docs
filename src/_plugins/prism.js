@@ -1,11 +1,11 @@
 const prism = require('prismjs');
 const PrismLoader = require('./PrismLoader');
 
-prism.hooks.add('wrap', function (env) {
+prism.hooks.add('wrap', env => {
     if (env.type !== 'keyword') {
         return
     }
-    env.classes.push('keyword-' + env.content)
+    env.classes.push(`keyword-${env.content}`)
 })
 
 var generateLineNumbers = (code, lineStart) =>
