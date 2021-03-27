@@ -47,4 +47,8 @@
    overflow-wrap: anywhere;
 }
 
+.edit-link {
+   @apply text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 !important;
+}
+
 /* purgecss end ignore */
