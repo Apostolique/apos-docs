@@ -94,10 +94,11 @@
     }
 
     .keyword-function,
-    .keyword-public,
+    .keyword-override,
     .keyword-private,
-    .keyword-static,
-    .keyword-protected {
+    .keyword-protected,
+    .keyword-public,
+    .keyword-static {
         @apply text-code-blue;
     }
 
