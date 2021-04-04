@@ -23,3 +23,10 @@ Takes in a `docs` directory along with your main `README.md`. Compiles the outpu
 * [markdown-it](https://github.com/markdown-it/markdown-it)
 * [prism](https://github.com/PrismJS/prism)
 * [tailwindcss](https://tailwindcss.com/)
+
+## Used by
+
+* <https://learn-monogame.github.io/>
+* <https://apostolique.github.io/Apos.Input/>
+* <https://apostolique.github.io/Apos.Gui/>
+* <https://apostolique.github.io/Apos.Camera/>
