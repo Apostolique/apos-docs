@@ -7,10 +7,17 @@
    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
    <link rel="icon" type="image/png" href="{{ '/img/Icon.png' | version | url }}">
    <meta name="darkreader-lock">
-   <title>{{ content | pagetitle | safe }}</title>
-   <meta name="description" content="{{ content | pagedescription | safe }}">
-   <meta name="twitter:title" content="{{ content | pagetitle | safe }}">
-   <meta property="og:title" content="{{ content | pagetitle | safe }}">
+
+   {% set currentpagetitle = content | pagetitle | safe %}
+   {% set currentpagedescription = content | pagedescription | safe %}
+   <title>{{ currentpagetitle }}</title>
+   <meta name="description" content="{{ currentpagedescription }}">
+
+   <meta name="twitter:title" content="{{ currentpagetitle }}">
+   <meta name="twitter:description" content="{{ currentpagedescription }}">
+
+   <meta property="og:title" content="{{ currentpagetitle }}">
+   <meta property="og:description" content="{{ currentpagedescription }}">
 </head>
 <body class="bg-gray-100 dark:bg-gray-900">
    <!-- Hamberger Menu Spacer -->
