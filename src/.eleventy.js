@@ -45,7 +45,7 @@ module.exports = eleventyConfig => {
     let pageTitle = site.title;
 
     if (h1) {
-      let currentTitle = domutils.getText(h1);
+      let currentTitle = domutils.textContent(h1);
       // Useful on the home page. Don't want "apos-docs - apos-docs"
       if (currentTitle !== site.title) {
         pageTitle = `${currentTitle} - ${site.title}`;
@@ -62,7 +62,7 @@ module.exports = eleventyConfig => {
     let pageDescription = site.description;
 
     if (p) {
-      pageDescription = domutils.getText(p);
+      pageDescription = domutils.textContent(p);
     }
 
     return pageDescription;
@@ -88,7 +88,7 @@ module.exports = eleventyConfig => {
       let newChild = {
         tagName: e.tagName,
         href: `#${e.attribs.id}`,
-        title: domutils.getText(e),
+        title: domutils.textContent(e),
         children: []
       };
 
