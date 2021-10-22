@@ -1,8 +1,6 @@
 const htmlmin = require('html-minifier');
 const markdownIt = require('markdown-it');
-const prism = require('./_plugins/prism');
 const yaml = require('js-yaml');
-const urljoin = require('url-join');
 const { parseDocument } = require('htmlparser2');
 const domutils = require('domutils');
 
@@ -102,10 +100,10 @@ module.exports = eleventyConfig => {
   eleventyConfig.addFilter('edit', value => {
     let isMainReadme = new RegExp(`^\./${config.dir.input}/README.md$`);
     if (isMainReadme.test(value)) {
-      return urljoin(site.repo, 'README.md');
+      value = 'README.md'
     }
 
-    return urljoin(site.repo, value);
+    return new URL(value, site.repo);
   });
 
   eleventyConfig.addDataExtension("yml", contents => yaml.load(contents));
@@ -168,7 +166,7 @@ module.exports = eleventyConfig => {
   md.use(require('markdown-it-replace-link'));
   md.use(require('markdown-it-sub'));
   md.use(require('markdown-it-sup'));
-  prism(md);
+  md.use(require('./_plugins/prism'))
   eleventyConfig.setLibrary("md", md);
 
   eleventyConfig.addTransform('htmlmin', (content, outputPath) => {
