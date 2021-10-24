@@ -122,51 +122,15 @@ module.exports = eleventyConfig => {
     breaks: true,
     linkify: false,
     typographer: true,
-    replaceLink(link, env) {
-      // Skip outbound link.
-      let isOutbound = new RegExp('^(?:[a-z]+:)?//', 'i');
-      if (isOutbound.test(link)) { return link }
-
-      // Remove markdown extension.
-      let isMarkdown = new RegExp('(?:(readme|index))?.(md|mkd|mkdn|mdwn|mdown|markdown)$', 'i');
-      if (isMarkdown.test(link)) {
-        link = link.replace(isMarkdown, "");
-      }
-
-      // Check if there's an extension.
-      let hasExt = /\.([0-9a-z]+)(?:[\?#]|$)/i;
-      if (!hasExt.test(link)) {
-        // Add trailing slash if missing.
-        link = link.replace(/\/?(\?|#|$)/, '/$1');
-      }
-
-      // Fix absolute input links.
-      let isAbsolute = new RegExp(`^\/${config.dir.input}`);
-      if (isAbsolute.test(link)) {
-        link = link.replace(isAbsolute, "");
-        return eleventyConfig.getFilter("url")(link);
-      }
-
-      // TODO: Check if the link points somewhere in the repo outside the docs. Rewrite links to GitHub.
-
-      let isInsideReadmeOrIndex = new RegExp('(?:(readme|index)).(md|mkd|mkdn|mdwn|mdown|markdown)$', 'i');
-      if (isInsideReadmeOrIndex.test(env.page.inputPath)) {
-        // Fix links inside README.md or index.md files.
-        return eleventyConfig.getFilter("url")(link);
-      } else {
-        // Fix relative links.
-        return eleventyConfig.getFilter("url")(`../${link}`);
-      }
-    }
   };
   let md = markdownIt(options);
   md.use(require('markdown-it-anchor'));
   md.use(require('markdown-it-emoji'));
   md.use(require('markdown-it-footnote'));
-  md.use(require('markdown-it-replace-link'));
   md.use(require('markdown-it-sub'));
   md.use(require('markdown-it-sup'));
   md.use(require('./_plugins/prism'))
+  md.use(require('./_plugins/link'), { eleventyConfig, config })
   eleventyConfig.setLibrary("md", md);
 
   eleventyConfig.addTransform('htmlmin', (content, outputPath) => {
