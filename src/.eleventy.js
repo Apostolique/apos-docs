@@ -130,7 +130,7 @@ module.exports = eleventyConfig => {
   md.use(require('markdown-it-sub'));
   md.use(require('markdown-it-sup'));
   md.use(require('./_plugins/prism'))
-  md.use(require('./_plugins/link'), { eleventyConfig, config })
+  md.use(require('./_plugins/link'), { eleventyConfig, config, site })
   eleventyConfig.setLibrary("md", md);
 
   eleventyConfig.addTransform('htmlmin', (content, outputPath) => {

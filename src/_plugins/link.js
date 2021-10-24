@@ -4,6 +4,7 @@
 module.exports = (md, opts) => {
   let eleventyConfig = opts.eleventyConfig
   let config = opts.config
+  let site = opts.site
 
   md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
     const token = tokens[idx]
@@ -28,6 +29,8 @@ module.exports = (md, opts) => {
   }
 
   function normalizeHref(hrefAttr, env) {
+      // TODO: Check if the url points somewhere in the repo outside the docs. Rewrite links to GitHub.
+
     let url = hrefAttr[1]
 
     const parsed = new URL(url, 'http://a.com')
@@ -52,7 +55,9 @@ module.exports = (md, opts) => {
       cleanUrl = cleanUrl.replace(isAbsolute, "");
       cleanUrl = eleventyConfig.getFilter("url")(cleanUrl);
     } else {
-      // TODO: Check if the url points somewhere in the repo outside the docs. Rewrite links to GitHub.
+      if (env.page.inputPath === './docs/README.md' && cleanUrl.startsWith(`./${site.docs}`)) {
+        cleanUrl = cleanUrl.replace(`./${site.docs}`, '')
+      }
 
       let isInsideReadmeOrIndex = /(?:(readme|index)).(md)$/i;
       if (isInsideReadmeOrIndex.test(env.page.inputPath)) {

@@ -43,5 +43,6 @@ fs.writeJsonSync('apos-docs/docs/_data/site.json', {
    title: options.title,
    description: options.desc,
    pathPrefix: options.base,
-   repo: options.repo
+   repo: options.repo,
+   docs: options.path
 })
