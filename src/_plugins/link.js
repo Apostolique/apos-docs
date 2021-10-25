@@ -19,69 +19,81 @@ module.exports = (md, opts) => {
         token.attrSet('target', '_blank')
         token.attrSet('rel', 'noopener noreferrer')
       } else if (!url.startsWith('#') && !url.startsWith('mailto:')) {
-        normalizeHref(hrefAttr, env, token)
+        normalizeHref(hrefAttr, env, token, true)
       }
     }
 
     return self.renderToken(tokens, idx, options)
   }
 
-  md.renderer.rules.link_close = (tokens, idx, options, env, self) => {
+  md.renderer.rules.image = (tokens, idx, options, env, self) => {
+    const token = tokens[idx]
+    const hrefIndex = token.attrIndex('src')
+    if (hrefIndex >= 0) {
+      const hrefAttr = token.attrs[hrefIndex]
+      const url = hrefAttr[1]
+      const isOutbound = /^(?:[a-z]+:)?\/\//.test(url)
+      if (!isOutbound) {
+        normalizeHref(hrefAttr, env, token, false)
+      }
+    }
+
     return self.renderToken(tokens, idx, options)
   }
 
-  function normalizeHref(hrefAttr, env, token) {
+  function normalizeHref(hrefAttr, env, token, addAttr) {
     let url = hrefAttr[1]
 
     const parsed = new URL(url, 'http://a.com')
     let cleanUrl = url.replace(/\#.*$/, '').replace(/\?.*$/, '')
 
-    let applyBase = false
+    applyBase = true
 
     // Remove markdown extension.
-    let isMarkdown = /(?:(readme))?.(md|vue)$/i;
+    let isMarkdown = /(?:(readme))?.(md)$/i;
     if (isMarkdown.test(cleanUrl)) {
       cleanUrl = cleanUrl.replace(isMarkdown, "");
     }
 
     // Check if there's an extension.
     let hasExt = /\.([0-9a-z]+)(?:[\?#]|$)/i;
-    if (hasExt.test(cleanUrl)) {
-    } else {
-      applyBase = true
-
+    if (!hasExt.test(cleanUrl)) {
       // Add trailing slash if missing.
       cleanUrl = cleanUrl.replace(/\/?(\?|#|$)/, '/$1');
+    }
 
-      // Fix absolute input links inside docs folder.
-      let isPageAbsolute = new RegExp(`^\/${site.docs}`);
-      if (isPageAbsolute.test(cleanUrl)) {
-        cleanUrl = cleanUrl.replace(isPageAbsolute, "");
-      } else {
-        let isAbsolute = /^\//
-        if (!isAbsolute.test(cleanUrl)) {
-          if (env.page.inputPath === `./${config.dir.input}/README.md`) {
-            cleanUrl = path.posix.join('/', path.posix.dirname(env.page.inputPath), '..', cleanUrl)
-          } else {
-            cleanUrl = path.posix.join('/', path.posix.dirname(env.page.inputPath), cleanUrl)
-          }
+    // Fix absolute input links inside docs folder.
+    let isPageAbsolute = new RegExp(`^\/${site.docs}`);
+    if (isPageAbsolute.test(cleanUrl)) {
+      cleanUrl = cleanUrl.replace(isPageAbsolute, "");
+    } else {
+      let isAbsolute = /^\//
+      if (!isAbsolute.test(cleanUrl)) {
+        if (env.page.inputPath === `./${config.dir.input}/README.md`) {
+          cleanUrl = path.posix.join('/', path.posix.dirname(env.page.inputPath), '..', cleanUrl)
+        } else {
+          cleanUrl = path.posix.join('/', path.posix.dirname(env.page.inputPath), cleanUrl)
+        }
 
-          if (cleanUrl.startsWith(`/${config.dir.input}`)) {
-            cleanUrl = cleanUrl.replace(config.dir.input, '')
-          } else if (cleanUrl === '/') {
-          } else {
-            // The url points somewhere in the repo outside the pages. Rewrite links to GitHub.
-            cleanUrl = cleanUrl.replace(/^\//, site.repo)
-            applyBase = false
-
-            token.attrSet('target', '_blank')
-            token.attrSet('rel', 'noopener noreferrer')
-          }
-        } else if (!/^\/$/.test(cleanUrl)) { // Exclude '/'
+        if (cleanUrl.startsWith(`/${config.dir.input}`)) {
+          cleanUrl = cleanUrl.replace(config.dir.input, '')
+        } else if (cleanUrl === '/') {
+        } else {
           // The url points somewhere in the repo outside the pages. Rewrite links to GitHub.
           cleanUrl = cleanUrl.replace(/^\//, site.repo)
           applyBase = false
 
+          if (addAttr) {
+            token.attrSet('target', '_blank')
+            token.attrSet('rel', 'noopener noreferrer')
+          }
+        }
+      } else if (!/^\/$/.test(cleanUrl)) { // Exclude '/'
+        // The url points somewhere in the repo outside the pages. Rewrite links to GitHub.
+        cleanUrl = cleanUrl.replace(/^\//, site.repo)
+        applyBase = false
+
+        if (addAttr) {
           token.attrSet('target', '_blank')
           token.attrSet('rel', 'noopener noreferrer')
         }
