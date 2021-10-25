@@ -26,6 +26,7 @@ module.exports = (md, opts) => {
     return self.renderToken(tokens, idx, options)
   }
 
+  const defaultRender = md.renderer.rules.image
   md.renderer.rules.image = (tokens, idx, options, env, self) => {
     const token = tokens[idx]
     const hrefIndex = token.attrIndex('src')
@@ -38,7 +39,7 @@ module.exports = (md, opts) => {
       }
     }
 
-    return self.renderToken(tokens, idx, options)
+    return defaultRender(tokens, idx, options, env, self)
   }
 
   function normalizeHref(hrefAttr, env, token, addAttr) {
