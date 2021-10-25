@@ -2,7 +2,7 @@
 
 Documentation static site generator built with Eleventy.
 
-It should work out of the box with minimal configuration. This is meant to be used in combination with GitHub Pages. The final output should work with JavaScript disabled. The site should look good in terminal browsers like Lynx.
+It should work out of the box with minimal configuration. This is meant to be used in combination with GitHub Pages. The final output should work with JavaScript disabled.
 
 [![npm](https://img.shields.io/npm/v/apos-docs.svg)](https://www.npmjs.com/package/apos-docs) [![NuGet](https://img.shields.io/npm/dt/apos-docs.svg)](https://www.npmjs.com/package/apos-docs)
 
