@@ -1,6 +1,8 @@
 // markdown-it plugin for:
 // 1. adding target="_blank" to external links
 // 2. normalize internal links
+const path = require('path')
+
 module.exports = (md, opts) => {
   let eleventyConfig = opts.eleventyConfig
   let config = opts.config
@@ -17,7 +19,7 @@ module.exports = (md, opts) => {
         token.attrSet('target', '_blank')
         token.attrSet('rel', 'noopener noreferrer')
       } else if (!url.startsWith('#') && !url.startsWith('mailto:')) {
-        normalizeHref(hrefAttr, env)
+        normalizeHref(hrefAttr, env, token)
       }
     }
 
@@ -28,49 +30,70 @@ module.exports = (md, opts) => {
     return self.renderToken(tokens, idx, options)
   }
 
-  function normalizeHref(hrefAttr, env) {
-      // TODO: Check if the url points somewhere in the repo outside the docs. Rewrite links to GitHub.
-
+  function normalizeHref(hrefAttr, env, token) {
     let url = hrefAttr[1]
 
     const parsed = new URL(url, 'http://a.com')
     let cleanUrl = url.replace(/\#.*$/, '').replace(/\?.*$/, '')
 
+    let applyBase = false
+
     // Remove markdown extension.
-    let isMarkdown = new RegExp('(?:(readme|index))?.(md)$', 'i');
+    let isMarkdown = /(?:(readme))?.(md|vue)$/i;
     if (isMarkdown.test(cleanUrl)) {
       cleanUrl = cleanUrl.replace(isMarkdown, "");
     }
 
     // Check if there's an extension.
     let hasExt = /\.([0-9a-z]+)(?:[\?#]|$)/i;
-    if (!hasExt.test(cleanUrl)) {
+    if (hasExt.test(cleanUrl)) {
+    } else {
+      applyBase = true
+
       // Add trailing slash if missing.
       cleanUrl = cleanUrl.replace(/\/?(\?|#|$)/, '/$1');
-    }
 
-    // Fix absolute input links.
-    let isAbsolute = new RegExp(`^\/${config.dir.input}`);
-    if (isAbsolute.test(cleanUrl)) {
-      cleanUrl = cleanUrl.replace(isAbsolute, "");
-      cleanUrl = eleventyConfig.getFilter("url")(cleanUrl);
-    } else {
-      if (env.page.inputPath === './docs/README.md' && cleanUrl.startsWith(`./${site.docs}`)) {
-        cleanUrl = cleanUrl.replace(`./${site.docs}`, '')
-      }
-
-      let isInsideReadmeOrIndex = /(?:(readme|index)).(md)$/i;
-      if (isInsideReadmeOrIndex.test(env.page.inputPath)) {
-        // Fix links inside README.md or index.md files.
-        cleanUrl = eleventyConfig.getFilter("url")(cleanUrl);
+      // Fix absolute input links inside docs folder.
+      let isPageAbsolute = new RegExp(`^\/${site.docs}`);
+      if (isPageAbsolute.test(cleanUrl)) {
+        cleanUrl = cleanUrl.replace(isPageAbsolute, "");
       } else {
-        // Fix relative links.
-        cleanUrl = eleventyConfig.getFilter("url")(`../${cleanUrl}`);
+        let isAbsolute = /^\//
+        if (!isAbsolute.test(cleanUrl)) {
+          if (env.page.inputPath === `./${config.dir.input}/README.md`) {
+            cleanUrl = path.posix.join('/', path.posix.dirname(env.page.inputPath), '..', cleanUrl)
+          } else {
+            cleanUrl = path.posix.join('/', path.posix.dirname(env.page.inputPath), cleanUrl)
+          }
+
+          if (cleanUrl.startsWith(`/${config.dir.input}`)) {
+            cleanUrl = cleanUrl.replace(config.dir.input, '')
+          } else if (cleanUrl === '/') {
+          } else {
+            // The url points somewhere in the repo outside the pages. Rewrite links to GitHub.
+            cleanUrl = cleanUrl.replace(/^\//, site.repo)
+            applyBase = false
+
+            token.attrSet('target', '_blank')
+            token.attrSet('rel', 'noopener noreferrer')
+          }
+        } else if (!/^\/$/.test(cleanUrl)) { // Exclude '/'
+          // The url points somewhere in the repo outside the pages. Rewrite links to GitHub.
+          cleanUrl = cleanUrl.replace(/^\//, site.repo)
+          applyBase = false
+
+          token.attrSet('target', '_blank')
+          token.attrSet('rel', 'noopener noreferrer')
+        }
       }
     }
 
     url = cleanUrl + parsed.search + parsed.hash
     url = decodeURI(url)
+
+    if (applyBase) {
+      url = eleventyConfig.getFilter("url")(url);
+    }
 
     hrefAttr[1] = url
   }
