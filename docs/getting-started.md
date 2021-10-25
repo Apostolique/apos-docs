@@ -63,7 +63,7 @@ env:
   TITLE: Apos.Input
   DESCRIPTION: Input library for MonoGame.
   BASE: Apos.Input
-  REPO: https://github.com/Apostolique/Apos.Input/tree/master/
+  REPO: https://github.com/Apostolique/Apos.Input/tree/main/
 
 jobs:
   build:
@@ -99,7 +99,7 @@ env:
   TITLE: Apos.Input
   DESCRIPTION: Input library for MonoGame.
   BASE: Apos.Input
-  REPO: https://github.com/Apostolique/Apos.Input/tree/master/
+  REPO: https://github.com/Apostolique/Apos.Input/tree/main/
 ```
 
 The `TITLE` variable lets you define the project name to show on the sidebar.

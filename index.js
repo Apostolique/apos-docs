@@ -12,7 +12,7 @@ program
    .option('-d, --desc <description>', 'description for the project', 'No description.')
    .option('-p, --path <path>', 'path to the markdown documentation files', 'docs')
    .requiredOption('-b, --base <url>', 'base url for the relative links. For example: "apos-docs"')
-   .requiredOption('-r, --repo <url>', 'repo url for edit links. For example: "https://github.com/Apostolique/apos-docs/tree/master/"')
+   .requiredOption('-r, --repo <url>', 'repo url for edit links. For example: "https://github.com/Apostolique/apos-docs/tree/main/"')
    .parse();
 
 const options = program.opts();
