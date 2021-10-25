@@ -124,7 +124,7 @@ module.exports = eleventyConfig => {
     typographer: true,
   };
   let md = markdownIt(options);
-  md.use(require('markdown-it-anchor'));
+  md.use(require('markdown-it-anchor'), { tabIndex: false });
   md.use(require('markdown-it-emoji'));
   md.use(require('markdown-it-footnote'));
   md.use(require('markdown-it-sub'));
