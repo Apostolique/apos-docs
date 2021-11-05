@@ -109,6 +109,12 @@ var foo = function (bar) {
 console.log(foo(5));
 ```
 
+Initial line number:
+
+```js {lineStart:42}
+console.log(foo(5));
+```
+
 ## Tables
 
 | Option | Description |
