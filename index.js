@@ -23,7 +23,6 @@ const config = [
    { src: path.join(__dirname, 'src/styles'), dest: 'apos-docs/styles' },
    { src: path.join(__dirname, 'src/.eleventy.js'), dest: 'apos-docs/.eleventy.js' },
    { src: path.join(__dirname, 'src/.eleventyignore'), dest: 'apos-docs/.eleventyignore' },
-   { src: path.join(__dirname, 'src/postcss.config.js'), dest: 'apos-docs/postcss.config.js' },
    { src: path.join(__dirname, 'src/package.json'), dest: 'apos-docs/package.json' },
    { src: path.join(__dirname, 'src/package-lock.json'), dest: 'apos-docs/package-lock.json' },
    { src: options.path, dest: 'apos-docs/docs' },
