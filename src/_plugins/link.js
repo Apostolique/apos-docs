@@ -77,7 +77,7 @@ module.exports = (md, opts) => {
         }
 
         if (cleanUrl.startsWith(`/${config.dir.input}`)) {
-          cleanUrl = cleanUrl.replace(config.dir.input, '')
+          cleanUrl = cleanUrl.replace(`/${config.dir.input}`, '')
         } else if (cleanUrl === '/') {
         } else {
           // The url points somewhere in the repo outside the pages. Rewrite links to GitHub.

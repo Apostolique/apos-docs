@@ -3,7 +3,7 @@
    .menu-icon .navicon::before,
    .menu-icon .navicon::after {
       content: '';
-      @apply bg-gray-500 block h-full transform absolute transition-all duration-500 ease-out;
+      @apply bg-stone-500 block h-full transform absolute transition-all duration-500 ease-out;
    }
    .menu-icon .navicon::before {
       @apply w-1/2;
@@ -16,7 +16,7 @@
    .menu-btn:focus ~ .menu-icon .navicon,
    .menu-btn:focus ~ .menu-icon .navicon::before,
    .menu-btn:focus ~ .menu-icon .navicon::after {
-      @apply bg-gray-900 dark:bg-white;
+      @apply bg-stone-900 dark:bg-white;
    }
    .menu-btn:not(:checked) ~ .menu-icon {
       @apply left-0 ml-0;
@@ -47,6 +47,6 @@
    }
 
    .edit-link {
-      @apply text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 !important;
+      @apply text-stone-700 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 !important;
    }
 }

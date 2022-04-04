@@ -1,3 +1,4 @@
+const fs = require("fs");
 const htmlmin = require('html-minifier');
 const markdownIt = require('markdown-it');
 const yaml = require('js-yaml');
@@ -20,9 +21,6 @@ let version = String(Date.now());
 module.exports = eleventyConfig => {
   eleventyConfig.setUseGitIgnore(false);
 
-  eleventyConfig.addWatchTarget('./_tmp/style.css');
-
-  eleventyConfig.addPassthroughCopy({ './_tmp/style.css': './style.css' });
   eleventyConfig.addPassthroughCopy("./docs/**/*.{jpg,png,gif}");
 
   eleventyConfig.addFilter('version', value => `${value}?v=${version}`);
@@ -133,9 +131,32 @@ module.exports = eleventyConfig => {
   md.use(require('./_plugins/link'), { eleventyConfig, config, site })
   eleventyConfig.setLibrary("md", md);
 
+  eleventyConfig.addTransform('cssinject', async (content, outputPath) => {
+    if (outputPath && outputPath.endsWith('.html')) {
+      const postcss = require('postcss')
+      let css = fs.readFileSync('styles/index.css')
+
+      await postcss([
+        require('postcss-import'),
+        require('tailwindcss/nesting'),
+        require('tailwindcss')(require('./styles/tailwind.config.js').dynamicContent([{ raw: content, extension: 'html' }])),
+        require('autoprefixer'),
+      ])
+        .process(css, { from: 'styles/index.css', to: '_site/index.css' })
+        .then(result => {
+          const reCSS = new RegExp('<link rel="stylesheet" href="/index.css">')
+          const code = `<style type="text/css">\n${result.css}\n</style>`
+          content = content.replace(reCSS, (_) => code)
+        })
+    }
+
+    return content
+  })
+
   eleventyConfig.addTransform('htmlmin', (content, outputPath) => {
     if (process.env.ELEVENTY_PRODUCTION && outputPath && outputPath.endsWith('.html')) {
       return htmlmin.minify(content, {
+        minifyCSS: true,
         collapseBooleanAttributes: true,
         collapseInlineTagWhitespace: false,
         collapseWhitespace: true,

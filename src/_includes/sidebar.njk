@@ -8,26 +8,26 @@
       >
       <label
          for="menu_btn"
-         class="fixed inset-0 transition-opacity duration-300 ease-out bg-gray-600 opacity-0 pointer-events-none md:hidden big-label"></label>
+         class="fixed inset-0 transition-opacity duration-300 ease-out bg-stone-600 opacity-0 pointer-events-none md:hidden big-label"></label>
       <label
          for="menu_btn"
          class="absolute top-0 z-20 inline-block px-6 py-8 -ml-16 duration-300 ease-out cursor-pointer pointer-events-auto select-none transition-left left-full menu-icon md:hidden"
       >
-         <span class="relative block w-5 transition-colors duration-300 ease-out bg-gray-500 h-2px navicon"></span>
+         <span class="relative block w-5 transition-colors duration-300 ease-out bg-stone-500 h-2px navicon"></span>
       </label>
-      <div class="flex flex-col flex-1 invisible w-full max-w-xs duration-300 ease-out transform -translate-x-full border-r border-gray-200 pointer-events-auto dark:border-gray-700 dark:border-r-2 dark:bg-gray-800 bg-gray-50 md:flex-initial transition-transform-visibility md:transition-none md:w-64 menu md:translate-x-0 md:visible">
+      <div class="flex flex-col flex-1 invisible w-full max-w-xs duration-300 ease-out transform -translate-x-full border-r border-stone-200 pointer-events-auto dark:border-stone-700 dark:border-r-2 dark:bg-stone-800 bg-stone-50 md:flex-initial transition-transform-visibility md:transition-none md:w-64 menu md:translate-x-0 md:visible">
          <!-- Site Title -->
-         <div class="flex items-center flex-shrink-0 h-auto px-4 py-5 md:py-0 md:h-16">
+         <div class="flex items-center shrink-0 h-auto px-4 py-5 md:py-0 md:h-16">
             {% if (page.url | pageurlrewrite == "/") %}
             <span
-               class="text-lg text-gray-900 underline dark:text-gray-300"
+               class="text-lg text-stone-900 underline dark:text-stone-300"
             >
                {{ site.title }}
             </span>
             {% else %}
             <a
                href="{{ '/' | url }}"
-               class="text-lg text-gray-900 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+               class="text-lg text-stone-900 hover:text-stone-900 dark:text-stone-300 dark:hover:text-white"
             >
                {{ site.title }}
             </a>
@@ -39,18 +39,18 @@
                {% macro sidebar(link) %}
                {% if ((page.url | pageurlrewrite) == link.url) %}
                <li class="mt-1">
-                  <span class="flex items-center px-2 py-2 text-base font-medium leading-6 text-gray-900 underline dark:text-white md:leading-5 md:text-sm group">
+                  <span class="flex items-center px-2 py-2 text-base font-medium leading-6 text-stone-900 underline dark:text-white md:leading-5 md:text-sm group">
                      {% if link.svg %}
                      <svg
                         fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        class="flex-none w-6 h-6 mr-4 text-gray-500 dark:text-gray-300 md:mr-3"
+                        class="flex-none w-6 h-6 mr-4 text-stone-500 dark:text-stone-300 md:mr-3"
                      >
                         {{ link.svg | safe }}
                      </svg>
                      {% else %}
                      <svg
                         fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        class="flex-none w-6 h-6 mr-4 text-gray-500 dark:text-gray-300 md:mr-3"
+                        class="flex-none w-6 h-6 mr-4 text-stone-500 dark:text-stone-300 md:mr-3"
                      >
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M 9,12 a 3,3 0 1,1 6,0 a 3,3 0 1,1 -6,0" />
                      </svg>
@@ -70,19 +70,19 @@
                <li class="mt-1">
                   <a
                      href="{{ link.url | url }}"
-                     class="flex items-center px-2 py-2 text-base font-medium leading-6 text-gray-600 dark:text-gray-300 md:leading-5 md:text-sm group dark:hover:text-white hover:text-gray-900 focus:text-black dark:focus:text-white"
+                     class="flex items-center px-2 py-2 text-base font-medium leading-6 text-stone-600 dark:text-stone-300 md:leading-5 md:text-sm group dark:hover:text-white hover:text-stone-900 focus:text-black dark:focus:text-white"
                   >
                      {% if link.svg %}
                      <svg
                         fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        class="flex-none w-6 h-6 mr-4 text-gray-400 md:mr-3 dark:group-hover:text-gray-300 dark:group-focus:text-gray-300 group-hover:text-gray-500 group-focus:text-gray-500"
+                        class="flex-none w-6 h-6 mr-4 text-stone-400 md:mr-3 dark:group-hover:text-stone-300 dark:group-focus:text-stone-300 group-hover:text-stone-500 group-focus:text-stone-500"
                      >
                         {{ link.svg | safe }}
                      </svg>
                      {% else %}
                      <svg
                         fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        class="flex-none w-6 h-6 mr-4 text-gray-400 md:mr-3 dark:group-hover:text-gray-300 dark:group-focus:text-gray-300 group-hover:text-gray-500 group-focus:text-gray-500"
+                        class="flex-none w-6 h-6 mr-4 text-stone-400 md:mr-3 dark:group-hover:text-stone-300 dark:group-focus:text-stone-300 group-hover:text-stone-500 group-focus:text-stone-500"
                      >
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M 9,12 a 3,3 0 1,1 6,0 a 3,3 0 1,1 -6,0" />
                      </svg>
@@ -107,7 +107,7 @@
                </ul>
             </nav>
          </div>
-         <div class="flex items-center justify-center flex-shrink-0 p-2">
+         <div class="flex items-center justify-center shrink-0 p-2">
             <!-- Social Links -->
             <ul class="flex">
                {% for social in nav.social %}
@@ -115,7 +115,7 @@
                   <a
                      href="{{ social.url | url }}"
                      target="_blank"
-                     class="inline-block px-2 py-2 text-gray-400 hover:text-gray-500 dark:hover:text-gray-300"
+                     class="inline-block px-2 py-2 text-stone-400 hover:text-stone-500 dark:hover:text-stone-300"
                   >
                      {% if social.title %}
                      <span class="sr-only">{{ social.title }}</span>
@@ -134,6 +134,6 @@
             </ul>
          </div>
       </div>
-      <div class="flex-shrink-0 w-14 md:hidden"></div>
+      <div class="shrink-0 w-14 md:hidden"></div>
    </div>
 </div>
