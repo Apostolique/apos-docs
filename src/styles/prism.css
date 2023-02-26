@@ -2,14 +2,14 @@
     .code-select {
         user-select: all;
         margin-bottom: 1.20em;
-        @apply relative pt-3 bg-stone-300 dark:bg-code-header rounded;
+        @apply relative pt-3 bg-stone-300 dark:bg-code-header rounded print:pt-0;
 
         &:before {
             content: 'select';
             right: 24px;
             top: 1px;
             font-size: 0.75rem;
-            @apply absolute text-stone-600 dark:text-stone-400 pointer-events-none;
+            @apply absolute text-stone-600 dark:text-stone-400 pointer-events-none print:hidden;
         }
 
         &:after {
@@ -18,7 +18,7 @@
             right: 3px;
             top: 3px;
             font-size: 0.75rem;
-            @apply absolute w-4 h-4 bg-stone-600 dark:bg-stone-400 pointer-events-none;
+            @apply absolute w-4 h-4 bg-stone-600 dark:bg-stone-400 pointer-events-none print:hidden;
         }
     }
     .code-highlight {
