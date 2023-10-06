@@ -58,6 +58,7 @@ on:
     paths:
     - 'docs/**'
     - 'README.md'
+    - '.github/workflows/documentation.yml'
 
 env:
   TITLE: Apos.Input
