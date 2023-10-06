@@ -11,6 +11,7 @@ program
    .option('-t, --title <title>', 'title for the project', 'Untitled')
    .option('-d, --desc <description>', 'description for the project', 'No description.')
    .option('-p, --path <path>', 'path to the markdown documentation files', 'docs')
+   .option('-a, --analytics <analytics>', 'code for your Google Analytics 4 property.')
    .requiredOption('-b, --base <url>', 'base url for the relative links. For example: "apos-docs"')
    .requiredOption('-r, --repo <url>', 'repo url for edit links. For example: "https://github.com/Apostolique/apos-docs/tree/main/"')
    .parse();
@@ -43,5 +44,6 @@ fs.writeJsonSync('apos-docs/docs/_data/site.json', {
    description: options.desc,
    pathPrefix: options.base,
    repo: options.repo,
-   docs: options.path
+   docs: options.path,
+   analytics: options.analytics
 })

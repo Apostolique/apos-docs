@@ -10,6 +10,7 @@ env:
   DESCRIPTION: Documentation static site generator.
   BASE: apos-docs
   REPO: https://github.com/Apostolique/apos-docs/tree/main/
+  ANALYTICS: G-TK6SK1XJRV
 
 jobs:
   build:
@@ -28,7 +29,7 @@ jobs:
       uses: c-hive/gha-npm-cache@v1
     - name: Use apos-docs
       run: |
-        apos-docs -t ${{ env.TITLE }} -d '${{ env.DESCRIPTION }}' -b ${{ env.BASE }} -r ${{ env.REPO }}
+        apos-docs -t ${{ env.TITLE }} -d '${{ env.DESCRIPTION }}' -b ${{ env.BASE }} -r ${{ env.REPO }} -g ${{ env.ANALYTICS }}
         cd apos-docs
         npm install
         npm run build
