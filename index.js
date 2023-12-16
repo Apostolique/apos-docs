@@ -33,6 +33,10 @@ const config = [
    { src: 'README.md', dest: 'apos-docs/docs/README.md' },
 ];
 
+if (fs.existsSync('CHANGELOG.md')) {
+   config.push({src: 'CHANGELOG.md', dest: 'apos-docs/docs/changelog.md'});
+}
+
 fs.emptyDirSync('apos-docs');
 
 for (const c of config) {
