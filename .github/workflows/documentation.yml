@@ -30,7 +30,7 @@ jobs:
       uses: c-hive/gha-npm-cache@v1
     - name: Use apos-docs
       run: |
-        apos-docs -t ${{ env.TITLE }} -d '${{ env.DESCRIPTION }}' -b ${{ env.BASE }} -r ${{ env.REPO }} -a ${{ env.ANALYTICS }}
+        apos-docs -t ${{ env.TITLE }} -d '${{ env.DESCRIPTION }}' -b ${{ env.BASE }} -r ${{ env.REPO }} -a ${{ env.ANALYTICS }} -u ${{ env.URL }}
         cd apos-docs
         npm install
         npm run build
