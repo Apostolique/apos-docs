@@ -102,8 +102,11 @@ module.exports = eleventyConfig => {
 
   eleventyConfig.addFilter('edit', value => {
     let isMainReadme = new RegExp(`^\./${config.dir.input}/README.md$`);
+    let isChangelog = new RegExp(`^\./${config.dir.input}/changelog.md$`);
     if (isMainReadme.test(value)) {
       value = 'README.md'
+    } else if (isChangelog.test(value)) {
+      value = 'CHANGELOG.md'
     }
 
     return new URL(value, site.repo);
