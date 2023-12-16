@@ -64,9 +64,14 @@ module.exports = eleventyConfig => {
     return pageDescription;
   });
 
-  eleventyConfig.addFilter('toc', content => {
+  eleventyConfig.addFilter('toc', function(content) {
     let root = parseDocument(content);
-    let tags = ['h2', 'h3', 'h4'];
+    var tags = ['h2', 'h3', 'h4'];
+
+    let isCHANGELOG = new RegExp('changelog/$', 'i');
+    if (isCHANGELOG.test(this.page.url)) {
+      tags = ['h2'];
+    }
     let h = domutils.findAll(e => tags.some(t => e.tagName == t), root.children);
 
     let prev = [{
