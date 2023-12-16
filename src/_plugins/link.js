@@ -19,7 +19,7 @@ module.exports = (md, opts) => {
         token.attrSet('target', '_blank')
         token.attrSet('rel', 'noopener noreferrer')
       } else if (!url.startsWith('#') && !url.startsWith('mailto:')) {
-        normalizeHref(hrefAttr, env, token, true)
+        normalizeHref(hrefAttr, env, token, true, false)
       }
     }
 
@@ -35,20 +35,23 @@ module.exports = (md, opts) => {
       const url = hrefAttr[1]
       const isOutbound = /^(?:[a-z]+:)?\/\//.test(url)
       if (!isOutbound) {
-        normalizeHref(hrefAttr, env, token, false)
+        normalizeHref(hrefAttr, env, token, false, true)
       }
     }
 
     return defaultRender(tokens, idx, options, env, self)
   }
 
-  function normalizeHref(hrefAttr, env, token, addAttr) {
+  function normalizeHref(hrefAttr, env, token, addAttr, isImage) {
     let url = hrefAttr[1]
 
     const parsed = new URL(url, 'http://a.com')
     let cleanUrl = url.replace(/\#.*$/, '').replace(/\?.*$/, '')
 
     applyBase = true
+
+    // TODO: It would be better if images outside the docs were copied into the docs folder to be hosted with the site.
+    let repo = isImage ? site.repo.replace('github', 'raw.githubusercontent').replace('/tree/', '/') : site.repo
 
     // Remove markdown extension.
     let isMarkdown = /(?:(readme))?.(md)$/i;
@@ -81,7 +84,7 @@ module.exports = (md, opts) => {
         } else if (cleanUrl === '/') {
         } else {
           // The url points somewhere in the repo outside the pages. Rewrite links to GitHub.
-          cleanUrl = cleanUrl.replace(/^\//, site.repo)
+          cleanUrl = cleanUrl.replace(/^\//, repo)
           applyBase = false
 
           if (addAttr) {
@@ -91,7 +94,7 @@ module.exports = (md, opts) => {
         }
       } else if (!/^\/$/.test(cleanUrl)) { // Exclude '/'
         // The url points somewhere in the repo outside the pages. Rewrite links to GitHub.
-        cleanUrl = cleanUrl.replace(/^\//, site.repo)
+        cleanUrl = cleanUrl.replace(/^\//, repo)
         applyBase = false
 
         if (addAttr) {
