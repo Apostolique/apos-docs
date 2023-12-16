@@ -16,8 +16,10 @@ module.exports = (md, opts) => {
       const url = hrefAttr[1]
       const isOutbound = /^(?:[a-z]+:)?\/\//.test(url)
       if (isOutbound) {
-        token.attrSet('target', '_blank')
-        token.attrSet('rel', 'noopener noreferrer')
+        if (!site.url || !url.startsWith(site.url)) {
+          token.attrSet('target', '_blank')
+          token.attrSet('rel', 'noopener noreferrer')
+        }
       } else if (!url.startsWith('#') && !url.startsWith('mailto:')) {
         normalizeHref(hrefAttr, env, token, true, false)
       }

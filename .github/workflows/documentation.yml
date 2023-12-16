@@ -10,6 +10,7 @@ env:
   DESCRIPTION: Documentation static site generator.
   BASE: apos-docs
   REPO: https://github.com/Apostolique/apos-docs/tree/main/
+  URL: https://apostolique.github.io/apos-docs/
   ANALYTICS: G-TK6SK1XJRV
 
 jobs:

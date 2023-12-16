@@ -12,6 +12,7 @@ program
    .option('-d, --desc <description>', 'description for the project', 'No description.')
    .option('-p, --path <path>', 'path to the markdown documentation files', 'docs')
    .option('-a, --analytics <analytics>', 'code for your Google Analytics 4 property.')
+   .option('-u, --url <url>', 'the GitHub pages url of the generated site. For example: "https://apostolique.github.io/apos-docs/"')
    .requiredOption('-b, --base <url>', 'base url for the relative links. For example: "apos-docs"')
    .requiredOption('-r, --repo <url>', 'repo url for edit links. For example: "https://github.com/Apostolique/apos-docs/tree/main/"')
    .parse();
@@ -45,5 +46,6 @@ fs.writeJsonSync('apos-docs/docs/_data/site.json', {
    pathPrefix: options.base,
    repo: options.repo,
    docs: options.path,
-   analytics: options.analytics
+   analytics: options.analytics,
+   url: options.url
 })
