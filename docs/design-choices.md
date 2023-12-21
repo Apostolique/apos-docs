@@ -20,6 +20,7 @@ High level overview for the apos-docs design decisions.
 
 * `README.md` files become `index.html`.
 * Other pages such as `page.md` become `page/index.html`.
+* Pages that end in `.draft.md` are excluded from the site.
 
 ## Navigation
 
