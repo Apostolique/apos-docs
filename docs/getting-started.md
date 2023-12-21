@@ -58,6 +58,7 @@ on:
     paths:
     - 'docs/**'
     - 'README.md'
+    - 'CHANGELOG.md'
     - '.github/workflows/documentation.yml'
 
 env:
