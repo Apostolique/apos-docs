@@ -123,6 +123,23 @@ module.exports = eleventyConfig => {
     })
   );
 
+  eleventyConfig.addGlobalData("eleventyComputed.permalink", () => {
+    return data => {
+      if (data.page.fileSlug.endsWith('.draft')) {
+        return false;
+      }
+      return data.permalink;
+    }
+  });
+  eleventyConfig.addGlobalData("eleventyComputed.eleventyExcludeFromCollections", () => {
+    return data => {
+      if (data.page.fileSlug.endsWith('.draft')) {
+        return true;
+      }
+      return data.eleventyExcludeFromCollections;
+    }
+  });
+
   let options = {
     html: true,
     breaks: true,
