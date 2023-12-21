@@ -115,3 +115,7 @@ The `REPO` variable is used to generate the edit links for each pages.
 ## GitHub Pages
 
 In your repository's settings, go in the options and find the GitHub Pages section. In the Source, select the `gh-pages` branch and hit save.
+
+## Draft
+
+If a page isn't ready to be published, you can append `.draft` to the file name. For example: `name.md` should become `name.draft.md`.
