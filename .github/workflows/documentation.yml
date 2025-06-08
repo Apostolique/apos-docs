@@ -26,7 +26,9 @@ jobs:
         node-version: '22.x'
         cache: 'npm'
     - name: Install apos-docs
-      run: npm install -g
+      run: |
+        npm i
+        npm install -g
     - name: Use apos-docs
       run: |
         apos-docs -t ${{ env.TITLE }} -d '${{ env.DESCRIPTION }}' -b ${{ env.BASE }} -r ${{ env.REPO }} -a ${{ env.ANALYTICS }} -u ${{ env.URL }}
