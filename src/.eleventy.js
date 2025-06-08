@@ -162,7 +162,7 @@ module.exports = eleventyConfig => {
       let css = fs.readFileSync('styles/index.css')
 
       await postcss([
-        require('@tailwindcss/postcss'),
+        require('@tailwindcss/postcss')({ optimize: { minify: !!process.env.ELEVENTY_PRODUCTION } }),
       ])
         .process(css, { from: 'styles/index.css', document: content })
         .then(result => {
@@ -178,7 +178,7 @@ module.exports = eleventyConfig => {
   eleventyConfig.addTransform('htmlmin', (content, outputPath) => {
     if (process.env.ELEVENTY_PRODUCTION && outputPath && outputPath.endsWith('.html')) {
       return htmlmin.minify(content, {
-        minifyCSS: true,
+        // minifyCSS: true,
         collapseBooleanAttributes: true,
         collapseInlineTagWhitespace: false,
         collapseWhitespace: true,
