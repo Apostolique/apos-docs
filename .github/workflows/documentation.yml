@@ -24,10 +24,9 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '22.x'
+        cache: 'npm'
     - name: Install apos-docs
       run: npm install -g
-    - name: Setup npm cache
-      uses: c-hive/gha-npm-cache@v1
     - name: Use apos-docs
       run: |
         apos-docs -t ${{ env.TITLE }} -d '${{ env.DESCRIPTION }}' -b ${{ env.BASE }} -r ${{ env.REPO }} -a ${{ env.ANALYTICS }} -u ${{ env.URL }}
