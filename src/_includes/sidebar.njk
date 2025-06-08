@@ -2,20 +2,20 @@
    <div class="relative flex w-screen h-full max-w-sm -ml-px md:w-64">
       <input
          id="menu_btn"
-         class="absolute opacity-0 menu-btn"
+         class="absolute opacity-0 peer"
          type="checkbox"
          aria-hidden="true"
       >
       <label
          for="menu_btn"
-         class="fixed inset-0 transition-opacity duration-300 ease-out bg-stone-600 opacity-0 pointer-events-none md:hidden big-label"></label>
+         class="fixed inset-0 transition-opacity duration-300 ease-out bg-stone-600 opacity-0 pointer-events-none md:hidden peer-checked:opacity-75 peer-checked:pointer-events-auto"></label>
       <label
          for="menu_btn"
-         class="absolute top-0 z-20 inline-block px-6 py-8 -ml-16 duration-300 ease-out cursor-pointer pointer-events-auto select-none transition-left left-full menu-icon md:hidden"
+         class="absolute top-0 z-20 inline-block px-6 py-8 peer-checked:-ml-16 duration-300 ease-out cursor-pointer pointer-events-auto select-none transition-left peer-checked:left-full menu-icon md:hidden peer-focus:*:bg-stone-900 dark:peer-focus:*:bg-white peer-focus:*:before:bg-stone-900 dark:peer-focus:*:before:bg-white peer-focus:*:after:bg-stone-900 dark:peer-focus:*:after:bg-white left-0 ml-0 peer-checked:*:bg-transparent! dark:peer-checked:*:bg-transparent! peer-checked:*:before:w-full peer-checked:*:before:-rotate-45 peer-checked:*:before:bg-white dark:peer-checked:*:before:bg-white peer-checked:*:after:rotate-45 peer-checked:*:after:bg-white dark:peer-checked:*:after:bg-white peer-checked:*:before:top-0 peer-checked:*:after:top-0"
       >
-         <span class="relative block w-5 transition-colors duration-300 ease-out bg-stone-500 h-2px navicon"></span>
+         <span class="relative block w-5 transition-colors duration-300 ease-out bg-stone-500 h-2px before:bg-stone-500 before:block before:h-full before:transform before:absolute before:transition-all before:duration-500 before:ease-out before:content-[''] before:w-1/2 before:top-5px after:bg-stone-500 after:block after:h-full after:transform after:absolute after:transition-all after:duration-500 after:ease-out after:content-[''] after:w-full after:-top-5px"></span>
       </label>
-      <div class="flex flex-col flex-1 invisible w-full max-w-xs duration-300 ease-out transform -translate-x-full border-r border-stone-200 pointer-events-auto dark:border-stone-700 dark:border-r-2 dark:bg-stone-800 bg-stone-50 md:flex-initial transition-transform-visibility md:transition-none md:w-64 menu md:translate-x-0 md:visible">
+      <div class="flex flex-col flex-1 invisible w-full max-w-xs duration-300 ease-out transform -translate-x-full border-r border-stone-200 pointer-events-auto dark:border-stone-700 dark:border-r-2 dark:bg-stone-800 bg-stone-50 md:flex-initial transition-transform-visibility md:transition-none md:w-64 peer-checked:translate-x-0 peer-checked:visible md:translate-x-0 md:visible">
          <!-- Site Title -->
          <div class="flex items-center shrink-0 h-auto px-4 py-5 md:py-0 md:h-16">
             {% if (page.url | pageurlrewrite == "/") %}

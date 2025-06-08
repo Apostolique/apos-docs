@@ -1,139 +1,137 @@
-@layer components {
-    .code-select {
-        user-select: all;
-        margin-bottom: 1.20em;
-        @apply relative pt-3 bg-stone-300 dark:bg-code-header rounded print:pt-0;
+@utility code-select {
+    user-select: all;
+    margin-bottom: 1.20em;
+    @apply relative pt-3 bg-stone-300 dark:bg-code-header rounded print:pt-0;
 
-        &:before {
-            content: 'select';
-            right: 24px;
-            top: 1px;
-            font-size: 0.75rem;
-            @apply absolute text-stone-600 dark:text-stone-400 pointer-events-none print:hidden;
+    &:before {
+        content: 'select';
+        right: 24px;
+        top: 1px;
+        font-size: 0.75rem;
+        @apply absolute text-stone-600 dark:text-stone-400 pointer-events-none print:hidden;
+    }
+
+    &:after {
+        content: '';
+        mask: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>');
+        right: 3px;
+        top: 3px;
+        font-size: 0.75rem;
+        @apply absolute w-4 h-4 bg-stone-600 dark:bg-stone-400 pointer-events-none print:hidden;
+    }
+}
+@utility code-highlight {
+    @apply relative bg-code text-code-white px-0 mx-0 my-3 rounded grid border-t border-stone-100 dark:border-stone-900;
+
+    &:before {
+        content: attr(lang);
+        right: 10px;
+        top: 5px;
+        font-size: 0.75rem;
+        @apply absolute text-code-white;
+    }
+
+    .line-numbers {
+        font-size: 100%;
+        letter-spacing: -1px;
+        padding-right: 0.8rem;
+        margin-right: .8rem;
+
+        @apply text-right float-left border-r border-code-dark select-none pointer-events-none;
+
+        > span {
+            counter-increment: linenumber;
+            @apply block;
         }
 
-        &:after {
-            content: '';
-            mask: url('data:image/svg+xml; utf8, <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>');
-            right: 3px;
-            top: 3px;
-            font-size: 0.75rem;
-            @apply absolute w-4 h-4 bg-stone-600 dark:bg-stone-400 pointer-events-none print:hidden;
+        > span:before {
+            content: counter(linenumber);
+            @apply block text-code-gray;
         }
     }
-    .code-highlight {
-        @apply relative bg-code text-code-white px-0 mx-0 my-3 rounded grid border-t border-stone-100 dark:border-stone-900;
 
-        &:before {
-            content: attr(lang);
-            right: 10px;
-            top: 5px;
-            font-size: 0.75rem;
-            @apply absolute text-code-white;
+    .syntax {
+        text-shadow: none;
+        box-shadow: none;
+        user-select: text;
+
+        @apply relative m-0 px-6 py-5 leading-normal bg-transparent overflow-auto whitespace-pre;
+
+        /**
+            Fixed a weird line-height issue on Chrome/Edge android
+        */
+        font-size: 0;
+
+        &::-webkit-scrollbar {
+            display: none;
         }
 
-        .line-numbers {
-            font-size: 100%;
-            letter-spacing: -1px;
-            padding-right: 0.8rem;
-            margin-right: .8rem;
-
-            @apply text-right float-left border-r border-code-dark select-none pointer-events-none;
-
-            > span {
-                counter-increment: linenumber;
-                @apply block;
-            }
-
-            > span:before {
-                content: counter(linenumber);
-                @apply block text-code-gray;
-            }
+        code {
+            font-size: 0.875rem;
+            @apply text-code-white;
         }
+    }
 
-        .syntax {
-            text-shadow: none;
-            box-shadow: none;
-            user-select: text;
+    .comment {
+        @apply text-code-gray;
+    }
 
-            @apply relative m-0 px-6 py-5 leading-normal bg-transparent overflow-auto whitespace-pre;
+    .boolean {
+        @apply text-code-indigo;
+    }
 
-            /**
-                Fixed a weird line-height issue on Chrome/Edge android
-            */
-            font-size: 0;
+    .number {
+        @apply text-code-indigo;
+    }
 
-            &::-webkit-scrollbar {
-                display: none;
-            }
+    .directive {
+        @apply text-code-red;
+    }
 
-            code {
-                font-size: 0.875rem;
-                @apply text-code-white;
-            }
-        }
+    .keyword {
+        @apply text-code-red;
+    }
 
-        .comment {
-            @apply text-code-gray;
-        }
+    .keyword-function,
+    .keyword-override,
+    .keyword-private,
+    .keyword-protected,
+    .keyword-public,
+    .keyword-static {
+        @apply text-code-blue;
+    }
 
-        .boolean {
-            @apply text-code-indigo;
-        }
+    .key {
+        @apply text-code-orange;
+    }
 
-        .number {
-            @apply text-code-indigo;
-        }
+    .function {
+        @apply text-code-green;
+    }
 
-        .directive {
-            @apply text-code-red;
-        }
+    .operator {
+        @apply text-code-red;
+    }
 
-        .keyword {
-            @apply text-code-red;
-        }
+    .string {
+        @apply text-code-yellow;
+    }
 
-        .keyword-function,
-        .keyword-override,
-        .keyword-private,
-        .keyword-protected,
-        .keyword-public,
-        .keyword-static {
-            @apply text-code-blue;
-        }
+    .class-name {
+        @apply text-code-orange;
+    }
 
-        .key {
-            @apply text-code-orange;
-        }
+    .title {
+        @apply text-code-blue;
+    }
 
-        .function {
-            @apply text-code-green;
-        }
-
-        .operator {
-            @apply text-code-red;
-        }
-
-        .string {
-            @apply text-code-yellow;
-        }
-
+    .type-list {
         .class-name {
-            @apply text-code-orange;
-        }
-
-        .title {
-            @apply text-code-blue;
-        }
-
-        .type-list {
-            .class-name {
-                @apply text-code-green;
-            }
-        }
-
-        .namespace {
             @apply text-code-green;
         }
+    }
+
+    .namespace {
+        @apply text-code-green;
     }
 }

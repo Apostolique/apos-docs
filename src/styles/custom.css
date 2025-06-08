@@ -1,52 +1,6 @@
-@layer components {
-   /* Left sidebar */
-   .menu-icon .navicon::before,
-   .menu-icon .navicon::after {
-      content: '';
-      @apply bg-stone-500 block h-full transform absolute transition-all duration-500 ease-out;
-   }
-   .menu-icon .navicon::before {
-      @apply w-1/2;
-      top: 5px;
-   }
-   .menu-icon .navicon::after {
-      @apply w-full;
-      top: -5px;
-   }
-   .menu-btn:focus ~ .menu-icon .navicon,
-   .menu-btn:focus ~ .menu-icon .navicon::before,
-   .menu-btn:focus ~ .menu-icon .navicon::after {
-      @apply bg-stone-900 dark:bg-white;
-   }
-   .menu-btn:not(:checked) ~ .menu-icon {
-      @apply left-0 ml-0;
-   }
-   .menu-btn:checked ~ .menu {
-      @apply translate-x-0 visible;
-   }
-   .menu-btn:checked ~ .big-label {
-      @apply opacity-75 pointer-events-auto;
-   }
-   .menu-btn:checked ~ .menu-icon .navicon {
-      @apply bg-transparent dark:bg-transparent;
-   }
-   .menu-btn:checked ~ .menu-icon .navicon::before {
-      @apply w-full -rotate-45 bg-white dark:bg-white;
-   }
-   .menu-btn:checked ~ .menu-icon .navicon::after {
-      @apply rotate-45 bg-white dark:bg-white;
-   }
-   .menu-btn:checked ~ .menu-icon:not(.steps) .navicon::before,
-   .menu-btn:checked ~ .menu-icon:not(.steps) .navicon::after {
-      @apply top-0;
-   }
-
-   /* word-break */
-   .break-anywhere {
-      overflow-wrap: anywhere;
-   }
-
-   .edit-link {
-      @apply text-stone-700 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 !important;
-   }
+@utility break-anywhere {
+   overflow-wrap: anywhere;
+}
+@utility edit-link {
+   @apply text-stone-700! dark:text-stone-400! hover:text-stone-900! dark:hover:text-stone-100!;
 }

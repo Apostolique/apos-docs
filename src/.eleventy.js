@@ -162,12 +162,9 @@ module.exports = eleventyConfig => {
       let css = fs.readFileSync('styles/index.css')
 
       await postcss([
-        require('postcss-import'),
-        require('tailwindcss/nesting'),
-        require('tailwindcss')(require('./styles/tailwind.config.js').dynamicContent([{ raw: content, extension: 'html' }])),
-        require('autoprefixer'),
+        require('@tailwindcss/postcss'),
       ])
-        .process(css, { from: 'styles/index.css', to: '_site/index.css' })
+        .process(css, { from: 'styles/index.css', document: content })
         .then(result => {
           const reCSS = new RegExp('<link rel="stylesheet" href="/index.css">')
           const code = `<style type="text/css">\n${result.css}\n</style>`

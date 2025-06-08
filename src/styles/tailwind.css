@@ -1,3 +1,22 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-code-blue: #3498db;
+  --color-code-gray: #5c6370;
+  --color-code-dark: #263040;
+  --color-code-green: #2ecc71;
+  --color-code-indigo: #6c71c4;
+  --color-code-light: #d2d6db;
+  --color-code-orange: #e67e22;
+  --color-code-red: #e74c3c;
+  --color-code-yellow: #f1c40f;
+  --color-code-white: #efefef;
+  --color-code-header: #111111;
+  --color-code: #080808;
+
+  --font-sans: Inter, sans-serif;
+
+  --spacing-2px: 2px;
+  --spacing-16\/9: 56.25%;
+}
