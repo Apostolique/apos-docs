@@ -20,6 +20,8 @@ jobs:
       with:
         node-version: '22.x'
         registry-url: 'https://registry.npmjs.org'
+    - name: Clear auth token for OIDC
+      run: echo "NODE_AUTH_TOKEN=" >> $GITHUB_ENV
     - name: Get version from tag
       run: |
         TAGVERSION=$(git describe --tags --abbrev=0)
