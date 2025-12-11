@@ -5,6 +5,10 @@ on:
     tags:
     - 'v*'
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build:
 
@@ -23,5 +27,3 @@ jobs:
     - run: npm --no-git-tag-version version ${{ env.TAGVERSION }}
     - run: npm install
     - run: npm publish
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
