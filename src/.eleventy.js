@@ -154,6 +154,7 @@ module.exports = eleventyConfig => {
   md.use(require('markdown-it-sup'));
   md.use(require('./_plugins/prism'))
   md.use(require('./_plugins/link'), { eleventyConfig, config, site })
+  md.use(require('./_plugins/admonition'))
   eleventyConfig.setLibrary("md", md);
 
   eleventyConfig.addTransform('cssinject', async (content, outputPath) => {
