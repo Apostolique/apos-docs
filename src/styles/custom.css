@@ -1,6 +1,10 @@
 @utility break-anywhere {
    overflow-wrap: anywhere;
 }
+
+.prose img.inline-image {
+   @apply inline align-middle my-0;
+}
 @utility edit-link {
    @apply text-stone-700! dark:text-stone-400! hover:text-stone-900! dark:hover:text-stone-100!;
 }

@@ -155,6 +155,7 @@ module.exports = eleventyConfig => {
   md.use(require('./_plugins/prism'))
   md.use(require('./_plugins/link'), { eleventyConfig, config, site })
   md.use(require('./_plugins/admonition'))
+  md.use(require('./_plugins/imagerow'))
   eleventyConfig.setLibrary("md", md);
 
   eleventyConfig.addTransform('cssinject', async (content, outputPath) => {
