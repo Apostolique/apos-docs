@@ -41,6 +41,21 @@ social:
 
 `social` links are shown at the bottom, the svg is required and the title is used for screen readers or terminal browsers.
 
+A link can hold its own `links` list to group pages under it. This nests as deep as you need:
+
+```yml
+links:
+  - title: Getting Started
+    url: /getting-started/
+  - title: Reference
+    url: /reference/
+    links:
+      - title: Buttons
+        url: /reference/button/
+      - title: Panels
+        url: /reference/panel/
+```
+
 For the links, find svg icons from <https://heroicons.com/>. Pick the *medium* version of your chosen icon. Only include the path part of the svg.
 
 For the social links, find svg icons from <https://simpleicons.org/>.
@@ -69,6 +84,7 @@ env:
   DESCRIPTION: Input library for MonoGame.
   BASE: Apos.Input
   REPO: https://github.com/Apostolique/Apos.Input/tree/main/
+  URL: https://apostolique.github.io/Apos.Input/
 
 jobs:
   build:
@@ -82,12 +98,12 @@ jobs:
       with:
         node-version: '22.x'
     - name: Install apos-docs
-      run: npm install apos-docs -g
+      run: npm install apos-docs@^0.7.0 -g
     - name: Use apos-docs
       run: |
-        apos-docs -t '${{ env.TITLE }}' -d '${{ env.DESCRIPTION }}' -b '${{ env.BASE }}' -r '${{ env.REPO }}'
+        apos-docs -t '${{ env.TITLE }}' -d '${{ env.DESCRIPTION }}' -b '${{ env.BASE }}' -r '${{ env.REPO }}' -u '${{ env.URL }}'
         cd apos-docs
-        npm install
+        npm ci
         npm run build
         cd -
     - name: Deploy
@@ -105,19 +121,73 @@ env:
   DESCRIPTION: Input library for MonoGame.
   BASE: Apos.Input
   REPO: https://github.com/Apostolique/Apos.Input/tree/main/
+  URL: https://apostolique.github.io/Apos.Input/
 ```
 
 The `TITLE` variable lets you define the project name to show on the sidebar.
 
 THE `DESCRIPTION` variable is used as metadata in the site.
 
-The `BASE` variable lets you define the subdirectory that the site will end up in. For a repository-level gh-pages deployment `[username].github.io/[repository name]`, you should set the value to `[repository name]`.
+The `BASE` variable lets you define the subdirectory that the site will end up in. For a repository-level gh-pages deployment `[username].github.io/[repository name]`, you should set the value to `[repository name]`. For a user or organization site served from the domain root, set it to `~`.
 
 The `REPO` variable is used to generate the edit links for each pages.
+
+The `URL` variable is the address the finished site lives at. It's what lets apos-docs tell
+your own pages apart from everyone else's: a full link that starts with this url is treated as
+an internal link, anything else gets `target="_blank"`. Leave it out and every absolute link to
+your own site opens in a new tab.
+
+`npm install apos-docs@^0.7.0 -g` pins the generator to a major version so a new release
+can't change your site without you asking for it. Bump it when you want the new version.
+
+`npm ci` installs the exact versions apos-docs was tested with, instead of resolving fresh
+ones on every run. Two builds of the same commit produce the same site.
+
+### Other options
+
+`-a, --analytics` takes the measurement id of a Google Analytics 4 property, for example
+`G-AB1CD2EFGH`, and adds the tracking snippet to every page. Leave it out and no analytics
+code is included at all.
+
+`-p, --path` points at the directory holding your markdown, in case you don't want to call it
+`docs`. It defaults to `docs`.
+
+Run `apos-docs --help` for the full list.
+
+## Preview locally
+
+If you want to see your docs before pushing, add `--serve` to the same command. It builds the
+site, serves it on <http://localhost:8080/>, and rebuilds whenever you edit your markdown:
+
+```sh
+npm install apos-docs@^0.7.0 -g
+apos-docs -t 'Apos.Input' -d 'Input library for MonoGame.' -b 'Apos.Input' -r 'https://github.com/Apostolique/Apos.Input/tree/main/' --serve
+```
+
+This is the only step that needs anything installed on your machine, and it's optional. The
+GitHub Actions pipeline above still handles everything on its own.
 
 ## GitHub Pages
 
 In your repository's settings, go in the options and find the GitHub Pages section. In the Source, select the `gh-pages` branch and hit save.
+
+## Changelog
+
+If your repository root has a `CHANGELOG.md`, it's picked up automatically and published at
+`/changelog/`. There's nothing to configure, and nothing happens if the file doesn't exist.
+
+Its table of content only lists the top level headings, so a changelog written with one `##`
+heading per release gets a clean list of versions instead of every bullet underneath them.
+
+Add it to the sidebar yourself if you want a link to it:
+
+```yml
+links:
+  - title: Changelog
+    url: /changelog/
+```
+
+The workflow above already rebuilds when `CHANGELOG.md` changes.
 
 ## Draft
 

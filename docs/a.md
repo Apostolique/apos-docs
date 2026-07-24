@@ -15,3 +15,12 @@
 * [/README.md](/README.md) /
 * [/docs/a.md](/docs/a.md) /a/
 * [/src/styles/](/src/styles/) https://github.com/Apostolique/apos-docs/tree/main/src/styles/
+
+## Images
+Images inside the docs are hosted with the site. Images outside of it stay in the repository, so
+they get rewritten to raw.githubusercontent.com instead.
+
+* ![img/Icon.png](img/Icon.png) /img/Icon.png
+* ![/docs/img/Icon.png](/docs/img/Icon.png) /img/Icon.png
+* ![../icon.png](../icon.png) https://raw.githubusercontent.com/Apostolique/apos-docs/main/icon.png
+* ![/icon.png](/icon.png) https://raw.githubusercontent.com/Apostolique/apos-docs/main/icon.png

@@ -1,5 +1,12 @@
-@import "tailwindcss";
+/* source(none) turns off automatic detection, which otherwise scans node_modules and
+   generates utilities for any class-like string it finds in there. The sources below
+   are the only places class names actually come from. */
+@import "tailwindcss" source(none);
 @plugin "@tailwindcss/typography";
+
+@source "../_includes";
+@source "../_plugins";
+@source "../docs";
 
 @theme {
   --color-code-blue: #3498db;

@@ -23,6 +23,10 @@ module.exports = eleventyConfig => {
 
   eleventyConfig.addPassthroughCopy("./docs/**/*.{jpg,png,gif}");
 
+  // The stylesheet is read straight from disk by the cssinject transform, so eleventy
+  // doesn't know it's a dependency.
+  eleventyConfig.addWatchTarget("./styles/");
+
   eleventyConfig.addFilter('version', value => `${value}?v=${version}`);
 
   eleventyConfig.addFilter('pageurlrewrite', value => {

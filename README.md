@@ -16,6 +16,20 @@ Takes in a `docs` directory along with your main `README.md`. Compiles the outpu
 * [Design choices](https://apostolique.github.io/apos-docs/design-choices/)
 * [Markdown showcase](https://apostolique.github.io/apos-docs/markdown/)
 
+## Development
+
+To work on the generator itself:
+
+```sh
+npm i
+npm run dev
+```
+
+This builds the site from `src` and `docs`, serves it on <http://localhost:8080/>, and rebuilds
+whenever you edit anything under `src`. Templates, styles and docs refresh in place. Editing a
+file in `src/_plugins` or `src/.eleventy.js` restarts eleventy automatically, since those are
+only read once at startup.
+
 ## Tech Stack
 
 * [node](https://nodejs.org)

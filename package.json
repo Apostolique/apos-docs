@@ -5,6 +5,9 @@
   "bin": {
     "apos-docs": "./index.js"
   },
+  "scripts": {
+    "dev": "node index.js -t apos-docs -d \"Documentation static site generator.\" -b apos-docs -r https://github.com/Apostolique/apos-docs/tree/main/ -u https://apostolique.github.io/apos-docs/ --serve"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Apostolique/apos-docs.git"

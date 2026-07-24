@@ -192,6 +192,22 @@ With a reference later in the document defining the URL location:
 [id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
 
 
+## Image rows
+
+Images stack on their own line by default. Put two or more of them on a single line and they
+flow side by side instead, which is what you usually want for a row of badges.
+
+[![npm](https://img.shields.io/npm/v/apos-docs.svg)](https://www.npmjs.com/package/apos-docs) [![downloads](https://img.shields.io/npm/dt/apos-docs.svg)](https://www.npmjs.com/package/apos-docs)
+
+```md
+[![npm](https://img.shields.io/npm/v/apos-docs.svg)](https://www.npmjs.com/package/apos-docs) [![downloads](https://img.shields.io/npm/dt/apos-docs.svg)](https://www.npmjs.com/package/apos-docs)
+```
+
+The line has to be nothing but images, since anything else on it means the images are part of a
+sentence rather than a row. Links around the images are fine, which is what makes badges work.
+A single image on its own line is left alone.
+
+
 ## Plugins
 
 The killer feature of `markdown-it` is very effective support of
